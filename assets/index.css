@@ -703,51 +703,77 @@ body {
 .shelf-wrap {
   min-width: 0;
 }
+/* Real cover rail: horizontal scroll at every breakpoint, so the shelf never
+   reflows into ragged rows. --cover-h scales the whole rail per breakpoint
+   (set in the responsive blocks below); covers keep Goodreads' ~2:3 ratio via
+   object-fit and sit on a drawn "shelf" baseline. */
 .shelf-rail {
+  --cover-h: 150px;
+  list-style: none;
   display: flex;
-  gap: 12px;
+  gap: clamp(12px, 1.4vw, 18px);
   align-items: flex-end;
   overflow-x: auto;
-  padding: 12px 2px var(--s-2);
-  margin-top: 18px;
+  padding: 14px 2px var(--s-3);
+  margin: 18px 0 0;
   scrollbar-width: thin;
   scroll-snap-type: x proximity;
+  /* the shelf: a thin baseline the covers rest on */
+  background: linear-gradient(var(--cararra), var(--cararra)) left bottom / 100% 2px no-repeat;
 }
-.spine {
+.book {
   flex: none;
-  width: 44px;
-  background: var(--ink);
-  border-radius: var(--r-spine);
+  scroll-snap-align: start;
+}
+.book > a {
+  display: block;
+  border-radius: var(--r-chip);
+  transition: transform 0.18s ease;
+}
+.book > a:hover,
+.book > a:focus-visible {
+  transform: translateY(-5px);
+}
+.book img {
+  display: block;
+  height: var(--cover-h);
+  width: auto;
+  max-width: none;
+  aspect-ratio: 98 / 148;
+  object-fit: cover;
+  border-radius: var(--r-chip);
+  box-shadow: var(--shadow-card);
+  background: var(--surface);
+}
+/* The book title/author stays available to assistive tech via the img alt text;
+   the .book-meta label is kept out of the layout to preserve the clean cover
+   row (alt already names the book, so nothing is lost for screen readers). */
+.book-meta {
+  position: absolute;
+  left: -9999px;
+}
+.book--more > a {
   display: grid;
   place-items: center;
-  scroll-snap-align: start;
-  transition: transform 0.18s ease;
-  height: var(
-    --spine-h
-  ); /* per-spine height via inline --spine-h data pattern (allowed inline, DESIGN.md §0) */
-}
-.spine:hover,
-.spine:focus-visible {
-  transform: translateY(-4px);
-}
-.spine span {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font: 400 11px var(--f-mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bg);
-  padding: 12px 0;
-}
-.spine.see-more {
-  background: var(--surface);
+  height: var(--cover-h);
+  width: calc(var(--cover-h) * 0.66);
   border: 1px dashed var(--cararra);
-}
-.spine.see-more span {
+  border-radius: var(--r-chip);
+  background: var(--surface);
+  font: 400 11px var(--f-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--flint);
+  text-align: center;
+  padding: 0 10px;
+}
+.book--more > a:hover,
+.book--more > a:focus-visible {
+  color: var(--ink);
+  border-color: var(--flint);
 }
 .reading-stats {
-  /* Figma: Reading Stats column is horizontal:fill beside the book spines.
+  /* Figma: Reading Stats column is horizontal:fill beside the book cover rail.
      Widen enough that the 48px "I read. Like a lot." heading stays on ONE line
      (was 320px → heading wrapped to two lines). */
   max-width: 440px;
@@ -886,6 +912,11 @@ body {
   .reading-stats h2 {
     font-size: 2.25rem; /* 36px */
   }
+  /* M: covers step down slightly so the rail stays proportional to the
+     narrower column beside the reading-stats block */
+  .shelf-rail {
+    --cover-h: 138px;
+  }
 }
 /* S — 768 target: bento becomes two-column wrapping grid */
 @media (max-width: 960px) {
@@ -917,6 +948,10 @@ body {
   .page {
     gap: var(--s-4);
     margin-top: var(--s-4);
+  }
+  /* S: bookshelf is still two-column here (stacks at 640); keep covers readable */
+  .shelf-rail {
+    --cover-h: 132px;
   }
 }
 /* XS floor — 390 target: single column, everything stacks */
@@ -957,6 +992,11 @@ body {
   .bookshelf {
     grid-template-columns: 1fr;
     align-items: start;
+  }
+  /* XS: shelf spans full width above the reading-stats block; smaller covers
+     mean more fit on a phone and the swipe reads as a real shelf */
+  .shelf-rail {
+    --cover-h: 118px;
   }
   .reading-stats {
     max-width: none;
