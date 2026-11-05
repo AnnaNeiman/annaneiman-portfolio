@@ -1,0 +1,42 @@
+name: verify
+
+# Run the accessibility + validation harness on every push and PR to main.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install harness dependencies
+        working-directory: tests
+        run: npm ci || npm install
+
+      - name: Install Playwright browser (Chromium)
+        working-directory: tests
+        run: npx playwright install --with-deps chromium
+
+      - name: Accessibility (axe-core, WCAG 2.1 A/AA)
+        working-directory: tests
+        run: node axe.mjs
+
+      - name: Layout + interactions (overflow, console, 5 breakpoints)
+        working-directory: tests
+        run: node run.mjs
+
+      - name: Link integrity
+        working-directory: tests
+        run: node links.mjs
+
+      - name: Prettier format check
+        working-directory: tests
+        run: npx prettier --config .prettierrc.json --check ../index.html ../marketplace.html ../case-*.html ../assets/*.css
