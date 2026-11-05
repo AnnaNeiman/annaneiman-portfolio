@@ -1082,8 +1082,8 @@ em.serif {
   left: 12px;
   width: 44px;
   height: 8px;
-  background: radial-gradient(circle 4px at 4px 4px, var(--frame-dot) 98%, transparent) 0 0 /
-    16px 8px repeat-x;
+  background: radial-gradient(circle 4px at 4px 4px, var(--frame-dot) 98%, transparent) 0 0 / 16px
+    8px repeat-x;
 }
 .mp .imgslot > img {
   z-index: 2;
