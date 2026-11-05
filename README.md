@@ -3,6 +3,8 @@
 Personal portfolio and case-study site for **Anna Neiman**, Senior Product Designer
 (product UI, component systems, and the accessible front-end that ships them).
 
+**Live:** https://annaneiman.github.io/annaneiman-portfolio/ (custom domain `annaneiman.design` to follow)
+
 ## Stack
 
 Intentionally a **zero-dependency static site** — hand-written semantic HTML, a
