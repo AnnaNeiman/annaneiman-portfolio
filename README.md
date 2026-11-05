@@ -56,6 +56,22 @@ node axe.mjs       # accessibility (WCAG 2.1 A/AA tags) — target: 0 violations
 node links.mjs     # link integrity
 ```
 
+## Syncing updates from the workspace
+
+Day-to-day edits happen in the shared `sidecar` workspace (where project context
+and collaboration live). This repo is the clean, canonical home for the site.
+To bring the latest site changes over:
+
+```bash
+./scripts/sync-portfolio.sh
+```
+
+The script compares by *prettier-normalized content* (so formatting never counts
+as a change), previews exactly what differs, waits for confirmation, formats to
+this repo's standard, runs the accessibility gate (`axe` — must be 0 violations),
+commits locally, and — once a GitHub remote is configured — offers to push.
+One-way only: sidecar → this repo.
+
 ## License
 
 © Anna Neiman. All rights reserved.
