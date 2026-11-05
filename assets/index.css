@@ -1,0 +1,998 @@
+/* ============================================================
+   HOMEPAGE component + layout CSS (index.html).
+   Loaded AFTER assets/styles.css (tokens + base). No tokens or
+   base rules live here — those are the single canonical copy in
+   styles.css (DESIGN.md §0).
+   ============================================================ */
+
+/* ============================================================
+   PAGE LAYOUT (DESIGN.md §2)
+   ============================================================ */
+body {
+  /* OPTION A exact-frame. Vertical padding is STEPPED to the Figma frame y-padding
+     (XL 60 / L 60 / M 60 / S 32 / XS 24 — dump frames #54:1353/1640/1926/2209/3457,
+     all "60px …" down to S); the steps live in the media blocks below. Horizontal is
+     the frame-accurate side gutter — centers the 1440 cap above 1440px (max()), and
+     steps to the Figma side paddings 120→40→24 below it (§2 / dump XL 240, L 120,
+     M 40, XS 24). */
+  padding: var(--pad-frame-y) max((100vw - var(--maxw)) / 2, var(--pad-l));
+}
+.page {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  /* EXACT Figma-stepped section gap (OPTION A): 60 @XL/L, 40 @M, 32 @S, 24 @XS —
+     NOT fluid (a fluid clamp collapsed mid-range and let the nav kiss the hero).
+     This governs nav→hero AND section→section so spacing is consistent everywhere.
+     Steps are set in the breakpoint blocks below; this is the XL/L default. */
+  gap: var(--gap-section); /* 60 */
+  /* nav→hero: the sticky nav pill is a separate <body> child, so add the frame gap
+     here as the hero's top offset (first-paint nav-bottom → hero-top = the frame gap).
+     The nav occupies 12px top offset + its own height in flow; margin-top on .page
+     opens the exact frame gap below the pill. Stepped with the section gap below. */
+  margin-top: var(--gap-section); /* 60 at XL/L */
+}
+
+/* shared kicker / divider */
+.kicker {
+  font: 400 var(--t-kicker) / 1 var(--f-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--flint);
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+.section-head .rule {
+  flex: 1 1 60px;
+  height: 1px;
+  background: var(--tag-divider);
+  min-width: 40px;
+}
+.section-head .count {
+  font: 400 var(--t-kicker) / 1 var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--flint);
+}
+
+.display {
+  font-family: var(--f-display);
+  font-weight: 900;
+  color: var(--ink);
+}
+.serif-italic {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-1);
+  font: 500 15px var(--f-body);
+  letter-spacing: var(--ls);
+  padding: 12px 22px;
+  border-radius: var(--r-pill);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+  min-height: 44px;
+}
+.btn-solid {
+  background: var(--ink);
+  color: var(--surface);
+}
+.btn-solid:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card);
+}
+.btn-outline {
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+.btn-outline:hover {
+  transform: translateY(-1px);
+  background: var(--greeting-fill);
+}
+
+/* ---- NAV (§3.1) ---- */
+.nav {
+  position: sticky;
+  top: 12px;
+  z-index: 100;
+  /* Figma centers the nav pill (every frame has alignItems:center). header.nav is
+     a direct <body> child in normal block flow, so align-self is a no-op — center
+     the max-content pill with margin-inline:auto (bulletproof regardless of parent). */
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.nav ul {
+  display: flex;
+  gap: var(--s-3); /* Figma node 54:1354 nav link gap = 24 */
+  align-items: center;
+  background: var(--nav-pill-fill);
+  border: 1px solid var(--cararra);
+  border-radius: var(--r-pill);
+  padding: 6px;
+  backdrop-filter: var(--blur-card);
+  -webkit-backdrop-filter: var(--blur-card);
+  transition: box-shadow 0.25s ease;
+}
+.nav.scrolled ul {
+  box-shadow: var(--shadow-card);
+}
+/* non-blur fallback: slightly more opaque fill */
+@supports not ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+  .nav ul {
+    background: rgba(255, 255, 255, 0.92);
+  }
+}
+.nav a {
+  display: block;
+  padding: 6px var(--s-2); /* Figma node 54:1354 link padding 6px 16px */
+  border-radius: var(--r-pill);
+  /* Figma node 54:1354 — nav links are Inter (Home Medium 500, others Regular 400),
+     NOT Space Mono. */
+  font: 400 14px var(--f-body);
+  letter-spacing: 0.04em;
+  color: var(--flint);
+  border: 1px solid transparent;
+  min-height: 40px;
+  line-height: 22px;
+  transition:
+    color 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+.nav a:hover {
+  color: var(--ink);
+}
+.nav a[aria-current="true"] {
+  background: var(--nav-active-fill);
+  border-color: var(--nav-active-stroke);
+  color: var(--log-cabin);
+  font-weight: 500; /* Figma: active Home = Inter Medium 500, not bold */
+}
+
+/* ============================================================
+   HERO BENTO (§3.2)
+   ============================================================ */
+/* Hero bento. Hero Top / Bottom rows use the Figma 32px inter-column gap at XL/L/M
+   (dump Hero Top Row #54:1364 gap:32). --hero-card-w is pinned per frame below
+   (584 XL / 459 L), so the card hits the exact Figma width at each frame width and
+   the right column (1fr) takes the remainder; fluid only between frames. */
+.hero {
+  display: grid;
+  gap: var(--s-4);
+}
+.hero-top {
+  display: grid;
+  grid-template-columns: minmax(360px, var(--hero-card-w)) 1fr;
+  gap: var(--s-4);
+}
+/* Hero Bottom Row (Figma alignItems:stretch) — featured cards + Fun Facts column
+   stretch to equal height; frame image heights are the min floor, fill wins. */
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 0.9fr;
+  gap: var(--s-4);
+  align-items: stretch;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+}
+
+/* Hero card — OPTION A exact-frame (Figma Hero Card #54:1365 / #54:1938):
+   padding 32px/48px, gap 40 between the three major groups. The 40 is PINNED (not a
+   fluid clamp — a clamp interpolated to 37/27 at L/M and let the groups drift). Each
+   major group owns its own sub-gap, so no negative-margin hacks are needed:
+     .hero-text (Name & Title #54:1366)  gap 8   eyebrow→name
+     .introduction (#54:1369)            gap 24  greeting→(roles&bio)
+       .switcher (Roles & Bio #54:d8a3)  gap 16  role tabs→bio
+     .hero-ctas (CTA Buttons #55:4025)   gap 16  between CTAs
+   Pad/gap step down only at the stacked S/XS frames (media blocks below). */
+.hero-card {
+  padding: var(--s-4) var(--s-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+} /* Name & Title: 8 */
+.eyebrow {
+  font: 400 var(--t-kicker) / 1.4 var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--flint);
+}
+/* OPTION A exact-frame: the dump specs the name at a literal 96/92 at XL, L AND M
+   (not a fluid down-scale), so pin it flat at 96 through the M range. It drops to
+   64 (--t-display-hero) only at the S breakpoint (≤960) below. */
+.hero-name {
+  font-size: var(--t-display-xl); /* pinned 96px XL/L/M */
+  line-height: 0.96;
+  color: var(--headline-brown);
+}
+.introduction {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+} /* Introduction: 24 */
+.greeting {
+  align-self: flex-start;
+  /* Figma node 54:1371 — greeting bubble text is Inter Regular 12/15, NOT Space Mono. */
+  font: 400 13px var(--f-body);
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--greeting-fill);
+  border-radius: var(--r-chip);
+  padding: 7px 12px;
+}
+
+/* role switcher (tablist) */
+/* Roles & Bio column (Figma EL-d8a3e5e9): 16px gap between the role-tabs row and
+   the bio panel so the bio breathes and the tab underline isn't cramped against
+   the first line. The greeting→roles rhythm (24) comes from .introduction and the
+   major-group rhythm (40) from the hero-card column. */
+.switcher {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.switcher-tabs {
+  display: flex;
+  gap: var(--s-05);
+  border-bottom: 1px solid var(--tag-divider);
+}
+.switcher-tabs [role="tab"] {
+  /* Figma node 54:1375/1377/1379 (style_17966e7b) — role tabs are Inter Medium 500,
+     NOT Space Mono. (Figma has no uppercase on these; the site keeps its uppercase
+     label treatment, family is the 1:1 fix.) */
+  font: 500 13px var(--f-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--flint);
+  padding: var(--s-1) 12px var(--s-1025);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease;
+  min-height: 40px;
+}
+.switcher-tabs [role="tab"]:hover {
+  color: var(--ink);
+}
+.switcher-tabs [role="tab"][aria-selected="true"] {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+  font-weight: 700;
+}
+.switcher-panels {
+  min-height: 112px;
+}
+.bio {
+  font-size: var(--t-body);
+  color: var(--ink);
+  max-width: 52ch;
+}
+.bio[hidden] {
+  display: none;
+}
+.bio.fade {
+  animation: bioIn 0.18s ease;
+}
+@keyframes bioIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero-ctas {
+  display: flex;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+} /* Figma Hero Actions: 16 between CTAs */
+
+/* glass hobby / fun-fact cards — Figma dump width 342, padding 16, radius 16 */
+.glass {
+  position: relative;
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-stroke);
+  border-radius: var(--r-card);
+  padding: var(--s-2);
+  backdrop-filter: var(--blur-card);
+  -webkit-backdrop-filter: var(--blur-card);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1025);
+}
+.glass .arrow {
+  position: absolute;
+  top: var(--s-2);
+  right: var(--s-2);
+  color: var(--flint);
+  font-size: 14px;
+  transition: transform 0.18s ease;
+}
+.glass:hover .arrow,
+.glass:focus-within .arrow {
+  transform: translate(2px, -2px);
+}
+.glass .label {
+  font: 400 var(--t-kicker) / 1 var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--flint);
+}
+.glass .desc {
+  font-family: var(--f-display);
+  font-size: var(--t-hobby-desc);
+  line-height: 1.5;
+  color: var(--black);
+}
+
+/* Right column fills the hero-top row height (Figma #54:1388 vertical:FILL); the
+   hobby row sits at natural height and the featured card grows to consume the rest,
+   so the column bottom aligns with the hero card bottom — no negative space. */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  height: 100%;
+}
+.hobby-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 1.6vw, 24px);
+}
+.funfacts {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2vw, 28px);
+}
+.funfacts .glass {
+  flex: 1;
+}
+
+/* featured project cards (grey placeholder + frosted overlay) */
+.feature {
+  position: relative;
+  display: block;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  min-height: 220px;
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.feature:hover,
+.feature:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(30, 30, 26, 0.12);
+}
+/* Featured image area fills the whole card; the Figma frame heights (dump Image
+   Placeholder #54:1425 = 393 XL / 389 L / 315 M) are the DESIGNED heights, but the
+   card is vertical:fill in the layout — so the large card GROWS (flex:1) to match the
+   hero-card height with the frame height as the min floor. Fill wins over the fixed
+   height so there is no negative space under it (per Figma alignItems:stretch). */
+.hero-right .feature.large {
+  flex: 1 1 auto;
+  min-height: var(--feat-img-h);
+}
+/* Hero Bottom Row featured cards stretch to the tallest sibling (the Fun Facts
+   column) via the row's align-items:stretch; the frame image height (--feat-img-h
+   393/389/315) is the min FLOOR — fill wins so the row has no negative space. */
+.feature.wide,
+.feature.medium {
+  min-height: var(--feat-img-h);
+}
+.placeholder {
+  position: absolute;
+  inset: 0;
+}
+/* frosted "Project Info" panel — Figma dump "Project Info" #54:1415 (854×120) /
+   #54:1440 (570×120): absolute, LEFT+BOTTOM anchored 1px from the card edge,
+   fixed panel height 120, internal padding 16, gap 16 (OPTION A exact-frame model).
+   The panel is left-anchored (dump locationRelativeToParent x:1) and capped to the
+   Figma panel width per card size, so on the wide XL card it reads as the 854/570
+   panel rather than stretching full-bleed; width:min() never lets it overflow a
+   narrow card. min-height (not a hard height) keeps content safe if copy runs long. */
+.overlay {
+  position: absolute;
+  left: var(--overlay-inset);
+  bottom: var(--overlay-inset);
+  width: min(var(--overlay-w, 854px), calc(100% - (2 * var(--overlay-inset))));
+  min-height: var(--overlay-h);
+  justify-content: center;
+  background: var(--overlay-fill);
+  border: 1px solid var(--overlay-stroke);
+  border-radius: var(--r-card);
+  padding: var(--s-2);
+  overflow: hidden;
+  backdrop-filter: var(--blur-overlay);
+  -webkit-backdrop-filter: var(--blur-overlay);
+  /* Figma Project Info internal rhythm (#54:1415): pad 16, gap 16 between the
+     Category row and the Title&Description group; the 8 title→description sub-gap
+     lives on .pt-group below. Gap is a clean 16 — no +8 margin hack. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.feature.large .overlay {
+  --overlay-w: 854px;
+} /* Project Info #54:1415 */
+.feature.wide .overlay {
+  --overlay-w: 854px;
+} /* Featured — Left shares the large panel */
+.feature.medium .overlay {
+  --overlay-w: 570px;
+} /* Project Info #54:1440 (right/medium) */
+/* Darkened-glass panel carries its own contrast — white text on the warm-dark
+   translucent fill clears AA over the image/grey without a separate scrim layer. */
+.overlay > * {
+  position: relative;
+  z-index: 1;
+  color: var(--overlay-text);
+}
+.overlay .cat {
+  font: 400 11px var(--f-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--overlay-text);
+}
+/* Title & Description sub-group (Figma #54:1422, gap 8) — the 16 category→title gap
+   comes from the overlay's own gap; this group owns the 8 title→description. */
+.overlay .pt-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+.overlay .ptitle {
+  font: 500 var(--t-card-title) var(--f-body);
+  letter-spacing: var(--ls);
+  color: var(--overlay-text);
+}
+.overlay .pout {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--overlay-text-soft);
+}
+
+/* ============================================================
+   WORK (§3.3)
+   ============================================================ */
+.work {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+.tmpl-note {
+  font: 400 12px var(--f-mono);
+  letter-spacing: 0.03em;
+  color: var(--flint);
+  background: var(--greeting-fill);
+  border-radius: var(--r-chip);
+  padding: 7px 12px;
+  align-self: flex-start;
+  margin-top: 6px;
+}
+.work-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--s-1025);
+}
+/* Work rows use the industry-standard inset hover pattern (Linear/Vercel/Stripe
+   list rows): the content stays aligned to the page grid, but the hover highlight
+   bleeds ~16px beyond the content on each side and has rounded corners, so it reads
+   as a soft highlighted card lighting up under the cursor — not a hard edge-to-edge
+   band. The negative inline margin + equal inline padding keeps the text position
+   unchanged (zero layout shift on hover); only `background` transitions. */
+.work-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: clamp(16px, 2vw, 32px);
+  padding: clamp(20px, 2.4vw, 28px) var(--s-2);
+  margin-inline: calc(var(--s-2) * -1);
+  border-radius: var(--r-card);
+  transition: background 0.18s ease;
+}
+/* Divider is an inset pseudo-element so the list rhythm line aligns under the
+   CONTENT columns, not out at the widened hover-bleed edge. Last row has none. */
+.work-row::after {
+  content: "";
+  position: absolute;
+  left: var(--s-2);
+  right: var(--s-2);
+  bottom: 0;
+  height: 1px;
+  background: var(--tag-divider);
+}
+.work-row:last-child::after {
+  display: none;
+}
+.work-row:hover,
+.work-row:focus-visible {
+  background: var(--greeting-fill);
+}
+.work-index {
+  font: 400 16px var(--f-mono);
+  color: var(--flint);
+}
+.work-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  min-width: 0;
+}
+.work-title {
+  font: 500 var(--t-card-title) var(--f-body);
+  letter-spacing: var(--ls);
+  color: var(--ink);
+}
+.work-desc {
+  font-size: var(--t-body);
+  color: var(--flint);
+  max-width: 62ch;
+}
+.work-tags {
+  display: flex;
+  gap: var(--s-1);
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+.tag {
+  /* Figma Work tags (node 54:1469 → EL-a980784f, Inter 12) — the same chip component
+     as the greeting pill + about info-label, all Inter, NOT Space Mono. */
+  font: 400 11px var(--f-body);
+  letter-spacing: 0.04em;
+  color: var(--flint);
+  background: var(--greeting-fill);
+  border-radius: var(--r-chip);
+  padding: var(--s-05) var(--s-1025);
+}
+.work-metric {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  white-space: nowrap;
+}
+.work-metric .num {
+  font: 800 var(--t-metric) / 1 var(--f-body);
+  color: var(--ink);
+  letter-spacing: var(--ls);
+}
+.work-metric .lab {
+  font: 400 11px var(--f-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--flint);
+}
+.work-arrow {
+  font-size: 18px;
+  color: var(--flint);
+  transition: transform 0.18s ease;
+}
+.work-row:hover .work-arrow,
+.work-row:focus-within .work-arrow {
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   ABOUT (§3.4) — two-column rail, 1:1 with Figma node 54:1561
+   "About Content" (layout mode:row, gap 32). Matches the Work /
+   Bookshelf narrow-rail-label + indented-content pattern.
+   Left rail = "about me" kicker + its 140px divider (hug width);
+   right column (fill) = headline + bios + info cards.
+   Collapses to a single stacked column at XS (≤640).
+   ============================================================ */
+.about {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-4);
+  align-items: start;
+}
+.about-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+/* the rail divider is the Figma 140px rule (node 54:1564), not a flex-fill rule */
+.about-head .section-head {
+  display: block;
+}
+.about-head .section-head .rule {
+  display: block;
+  width: 140px;
+  min-width: 0;
+  flex: none;
+}
+.about-details {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.about h2 {
+  font-size: var(--t-section);
+  color: var(--ink);
+  font-family: var(--f-display);
+}
+.about-bio {
+  max-width: 64ch;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.about-bio p {
+  font-size: var(--t-body);
+  color: var(--ink);
+}
+.info-cards {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--s-05) var(--bento-gap) var(--s-05) 0;
+  margin-right: var(--bento-gap);
+  border-right: 1px solid var(--cream);
+}
+.info-card:last-child {
+  border-right: 0;
+  margin-right: 0;
+  padding-right: 0;
+}
+.info-card .il {
+  /* Figma node 54:1575/1581/1587 (style_8db8b495) — the info LABEL pill text is
+     Inter Regular 12, NOT Space Mono (same chip component as greeting + work tags). */
+  font: 400 12px var(--f-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--flint);
+  background: var(--greeting-fill);
+  border-radius: var(--r-chip);
+  padding: var(--s-05) var(--s-1025);
+  align-self: flex-start;
+}
+.info-card .iv {
+  /* Figma node 54:1576/1582/1588 (style_c6ef97d9) — the info VALUE is Space Mono 16
+     UPPER. Already correct; kept as --f-mono. */
+  font: 400 16px var(--f-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* ============================================================
+   BOOKSHELF (§3.5)
+   ============================================================ */
+.bookshelf {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: end;
+}
+.shelf-wrap {
+  min-width: 0;
+}
+.shelf-rail {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  overflow-x: auto;
+  padding: 12px 2px var(--s-2);
+  margin-top: 18px;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+.spine {
+  flex: none;
+  width: 44px;
+  background: var(--ink);
+  border-radius: var(--r-spine);
+  display: grid;
+  place-items: center;
+  scroll-snap-align: start;
+  transition: transform 0.18s ease;
+  height: var(
+    --spine-h
+  ); /* per-spine height via inline --spine-h data pattern (allowed inline, DESIGN.md §0) */
+}
+.spine:hover,
+.spine:focus-visible {
+  transform: translateY(-4px);
+}
+.spine span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font: 400 11px var(--f-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bg);
+  padding: 12px 0;
+}
+.spine.see-more {
+  background: var(--surface);
+  border: 1px dashed var(--cararra);
+}
+.spine.see-more span {
+  color: var(--flint);
+}
+.reading-stats {
+  /* Figma: Reading Stats column is horizontal:fill beside the book spines.
+     Widen enough that the 48px "I read. Like a lot." heading stays on ONE line
+     (was 320px → heading wrapped to two lines). */
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.reading-stats h2 {
+  /* Figma reading heading: 48 at XL/L (style_63fc12ee), 36 at M and below
+     (style_05534925/031484cb) — stepped, not fluid, so it matches 1:1 and
+     stays on one line. */
+  font-size: 3rem; /* 48px */
+  line-height: 1.05;
+  font-family: var(--f-display);
+  color: var(--ink);
+  text-wrap: balance;
+}
+.reading-stats p {
+  font-size: var(--t-body);
+  color: var(--ink);
+}
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ============================================================
+   CONTACT + FOOTER (§3.6)
+   ============================================================ */
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  text-align: center;
+  /* extra breathing room before Contact (after the Bookshelf section), on top of
+     the 60 page gap; bottom padding unchanged. Top steps down on smaller frames. */
+  padding: clamp(32px, 5vw, 80px) 0 clamp(24px, 4vw, 48px);
+}
+.contact h2 {
+  font-size: var(--t-section);
+  font-family: var(--f-display);
+  color: var(--ink);
+  max-width: 16ch;
+  line-height: 1.08;
+}
+.contact .hero-ctas {
+  justify-content: center;
+}
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  text-align: center;
+  padding-top: clamp(24px, 3vw, 40px);
+  border-top: 1px solid var(--tag-divider);
+}
+.site-footer .email {
+  font: 500 18px var(--f-body);
+  letter-spacing: var(--ls);
+  color: var(--ink);
+}
+.site-footer .tagline {
+  font: 400 13px var(--f-mono);
+  letter-spacing: 0.06em;
+  color: var(--flint);
+}
+.socials {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--s-05);
+}
+.socials a,
+.socials span {
+  font: 500 15px var(--f-body);
+  letter-spacing: var(--ls);
+  color: var(--ink);
+  transition: color 0.18s ease;
+}
+.socials a:hover {
+  color: var(--flint);
+}
+.socials [aria-disabled="true"] {
+  color: var(--flint);
+  cursor: default;
+}
+.socials [aria-disabled="true"] .addlink {
+  font: 400 10px var(--f-mono);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  opacity: 0.75;
+}
+.copyright {
+  font: 400 12px var(--f-mono);
+  letter-spacing: 0.06em;
+  color: var(--flint);
+  margin-top: 6px;
+}
+
+/* ============================================================
+   RESPONSIVE (§2) — homepage breakpoint set 1601/1281/961/641
+   ============================================================ */
+/* M — 1024 target. NOTE: the hero NAME stays --t-display-xl (96/92) in
+   --headline-brown through M (XL/L/M all use style_0121b14a / #2E1A0F per the dump,
+   nodes 54:1368 / 54:1655 / 54:1941). The 64/--ink name belongs ONLY to the S/XS
+   frames (style EL-5e657364), so the size+color drop lives in the ≤960 block below. */
+/* L frame (1281–1600 → 1440): hero card fixed 459, featured image height 389 (dump). */
+@media (max-width: 1600px) {
+  :root {
+    --hero-card-w: 459px;
+    --feat-img-h: 389px;
+  }
+}
+@media (max-width: 1280px) {
+  /* M frame gutter: 40 @1024 → 120 @1280 (Figma M side pad = 40) */
+  body {
+    padding-left: clamp(var(--pad-m), 19.2vw - 156.8px, var(--pad-l));
+    padding-right: clamp(var(--pad-m), 19.2vw - 156.8px, var(--pad-l));
+  }
+  /* M band: exact Figma frame gap = 40 (governs nav→hero and section→section) */
+  .page {
+    gap: var(--gap-section-m);
+    margin-top: var(--gap-section-m);
+  }
+  /* M frame: featured image height 315 (dump); hero card stays 459-capped, fills toward it */
+  :root {
+    --feat-img-h: 315px;
+  }
+  /* M frame: reading heading steps 48 → 36 (Figma style_05534925) */
+  .reading-stats h2 {
+    font-size: 2.25rem; /* 36px */
+  }
+}
+/* S — 768 target: bento becomes two-column wrapping grid */
+@media (max-width: 960px) {
+  /* S/XS frame: hero name drops to 64/64 in --ink (dump style EL-5e657364, #313131) */
+  .hero-name {
+    font-size: var(--t-display-hero);
+    color: var(--ink);
+  }
+  .hero-top {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-bottom {
+    grid-template-columns: 1fr 1fr;
+  }
+  /* S/XS stacked frames: hero card spans full width and tightens to pad 28 + gap 24
+     (brief contract; the 32/48·40 Figma internals are the XL/L/M spec). */
+  .hero-card {
+    grid-column: 1 / -1;
+    padding: 28px;
+    gap: var(--s-3);
+  }
+  .about-bio {
+    max-width: none;
+  }
+  /* S frame gutter + exact section gap + vertical padding: Figma S = 32 everywhere */
+  body {
+    padding: var(--s-4) clamp(var(--s-4), 4.17vw, var(--pad-m));
+  }
+  .page {
+    gap: var(--s-4);
+    margin-top: var(--s-4);
+  }
+}
+/* XS floor — 390 target: single column, everything stacks */
+@media (max-width: 640px) {
+  /* XS frame gutter + exact section gap + vertical padding: Figma XS = 24 everywhere */
+  body {
+    padding: var(--s-3);
+  }
+  .page {
+    gap: var(--s-3);
+    margin-top: var(--s-3);
+  }
+  .nav {
+    width: 100%;
+  }
+  .nav ul {
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 2px;
+    padding: 5px;
+  }
+  .nav a {
+    padding: 9px 12px;
+  }
+  .hero-top,
+  .hero-bottom,
+  .hobby-row {
+    grid-template-columns: 1fr;
+  }
+  /* XS: About collapses to a single stacked column — rail label above content */
+  .about {
+    grid-template-columns: 1fr;
+    gap: var(--s-3);
+  }
+  .about-head .section-head .rule {
+    width: 100%;
+  }
+  .bookshelf {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .reading-stats {
+    max-width: none;
+  }
+  .work-row {
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "idx main" "metric arrow";
+    row-gap: 14px;
+  }
+  .work-index {
+    grid-area: idx;
+  }
+  .work-main {
+    grid-area: main;
+  }
+  .work-metric {
+    grid-area: metric;
+    text-align: left;
+  }
+  .work-arrow {
+    grid-area: arrow;
+    justify-self: end;
+  }
+  .info-card {
+    border-right: 0;
+    margin-right: 0;
+    padding-right: 0;
+    border-bottom: 1px solid var(--cream);
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    width: 100%;
+  }
+  .info-card:last-child {
+    border-bottom: 0;
+  }
+  .contact h2 {
+    max-width: none;
+  }
+}

@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case study 4 (placeholder) | Anna Neiman</title>
+    <meta name="description" content="Placeholder case study — lorem ipsum stand-in copy." />
+    <meta property="og:title" content="Case study 4 (placeholder)" />
+    <meta property="og:description" content="Placeholder case study — lorem ipsum stand-in copy." />
+    <meta name="theme-color" content="#F6F3ED" />
+
+    <!-- Inline SVG favicon (data URI): zero asset, zero extra request, no 404. -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23F6F3ED'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Georgia,serif'%20font-size='22'%20font-weight='900'%20text-anchor='middle'%20fill='%232E1A0F'%3EA%3C/text%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Space+Mono&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Space+Mono&display=swap"
+    />
+
+    <!-- Canonical tokens + base (single source of truth), then this page's component CSS. -->
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/case-study.css" />
+  </head>
+  <body class="mp">
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back" href="index.html#work">← Back to work</a>
+      <nav aria-label="Primary">
+        <a href="index.html#hero">Home</a>
+        <a href="index.html#work" aria-current="page">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="cs-title">
+      <div class="wrap">
+        <div class="hero-head">
+          <div class="hero-meta">
+            <span class="chip">Role</span>
+            <span class="chip">Scope</span>
+            <span class="chip">Year</span>
+          </div>
+          <h1 id="cs-title">Case study 4</h1>
+          <p class="hook">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.
+          </p>
+        </div>
+        <div class="hero-figure">
+          <div
+            class="imgslot r-32-15"
+            role="img"
+            data-asset="placeholder.png"
+            aria-label="Placeholder — hero visual to come."
+          ><span class="mp-chrome" aria-hidden="true"></span></div>
+          <div class="result-badge">
+            <div class="stat">
+              <span class="num">+XX%</span
+              ><span class="lab">Metric</span>
+            </div>
+            <div class="stat">
+              <span class="num">+XX%</span
+              ><span class="lab">Metric</span>
+            </div>
+            <div class="stat">
+              <span class="num">+XX%</span
+              ><span class="lab">Metric</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BODY GRID ============ -->
+    <div class="body-grid">
+      <!-- RAIL (source order: aside before main) -->
+      <aside class="rail" aria-label="Case summary and navigation">
+        <div class="summary-card">
+          <h2>At a glance</h2>
+          <div class="sfield">
+            <span class="k">Problem</span
+            ><span class="v">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Constraint</span
+            ><span class="v">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Role</span
+            ><span class="v">Quis autem vel eum iure reprehenderit qui in ea voluptate velit.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Team</span
+            ><span class="v">At vero eos et accusamus et iusto odio dignissimos ducimus.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Timeline</span
+            ><span class="v">Sed do eiusmod tempor.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Tools</span
+            ><span class="v">Consectetur adipiscing elit.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Outcomes</span
+            ><span class="v">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</span>
+          </div>
+        </div>
+
+        <nav class="spinenav" aria-label="Sections">
+          <h2>In this case</h2>
+          <ol>
+            <li><a href="#s-context" class="active">Context</a></li>
+            <li><a href="#s-research">Research</a></li>
+            <li><a href="#s-decisions">Key decisions</a></li>
+            <li><a href="#s-build">Build &amp; validate</a></li>
+            <li><a href="#s-final">Final design</a></li>
+            <li><a href="#s-outcomes">Outcomes</a></li>
+            <li><a href="#s-reflection">Reflection</a></li>
+            <li><a href="#s-howbuilt">How it was built</a></li>
+          </ol>
+          <p class="jump"><a href="#s-outcomes">↓ Jump to outcomes</a></p>
+          <p class="readtime">⏱ Placeholder</p>
+        </nav>
+      </aside>
+
+      <!-- STORY COLUMN -->
+      <main id="main" class="story">
+        <section class="sixty" aria-labelledby="sixty-k">
+          <p class="sixty-k" id="sixty-k">The 60-second version</p>
+          <p class="sixty-line">Lorem ipsum dolor, <em>consectetur adipiscing elit.</em></p>
+          <ol class="sixty-steps">
+            <li>
+              <span class="sn" aria-hidden="true">1</span>
+              <h3>Problem</h3>
+              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            </li>
+            <li>
+              <span class="sn" aria-hidden="true">2</span>
+              <h3>Approach</h3>
+              <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.</p>
+            </li>
+            <li>
+              <span class="sn" aria-hidden="true">3</span>
+              <h3>Result</h3>
+              <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section id="s-context" class="section">
+          <p class="kicker">01 · Context</p>
+          <h2 class="claim">Lorem ipsum dolor sit amet, consectetur adipiscing.</h2>
+          <p class="lead">
+            Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id
+            quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
+          </p>
+        </section>
+
+        <section id="s-research" class="section">
+          <p class="kicker">02 · Research</p>
+          <h2 class="claim">Duis aute irure dolor in reprehenderit.</h2>
+          <div class="insights">
+            <div class="insight">
+              <div class="n">01</div>
+              <p>Lorem ipsum <em class="hl">dolor sit amet</em>, consectetur adipiscing elit sed do.</p>
+            </div>
+            <div class="insight">
+              <div class="n">02</div>
+              <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet. Neque porro quisquam est qui dolorem.</p>
+            </div>
+            <div class="insight">
+              <div class="n">03</div>
+              <p>At vero eos et accusamus et iusto odio dignissimos ducimus. Quis autem vel eum iure reprehenderit.</p>
+            </div>
+          </div>
+          <div
+            class="imgslot r-2-1 research"
+            role="img"
+            data-asset="placeholder.png"
+            aria-label="Placeholder — diagram to come."
+          ><span class="mp-chrome" aria-hidden="true"></span></div>
+        </section>
+
+        <section id="s-decisions" class="section">
+          <p class="kicker">03 · Key decisions</p>
+          <h2 class="claim">Sed ut perspiciatis unde omnis iste.</h2>
+
+
+          <div class="decision" id="d1">
+            <div class="dhead">
+              <div class="dtitle"><span class="dn">Decision 1</span><h3>Lorem ipsum dolor sit amet consectetur</h3></div>
+              <a class="anchor" href="#d1" title="Copy link to this decision">Link</a>
+            </div>
+            <div class="dpair">
+              <div class="dcol rejected">
+                <span class="dtag"><span class="mark" aria-hidden="true">✗</span>Rejected</span>
+                <div
+                  class="imgslot r-16-9"
+                  role="img"
+                  data-asset="placeholder.png"
+                  aria-label="Placeholder — visual to come."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it lost</span><p class="dpull"><span>Lorem ipsum dolor.</span></p><p class="dwhy">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p></div>
+              </div>
+              <div class="dcol shipped">
+                <span class="dtag"><span class="mark" aria-hidden="true">✓</span>Shipped</span>
+                <div
+                  class="imgslot r-16-9"
+                  role="img"
+                  data-asset="placeholder.png"
+                  aria-label="Placeholder — visual to come."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it won</span><p class="dpull"><span>Sed ut perspiciatis.</span></p><p class="dwhy">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.</p></div>
+                <span class="wipe" aria-hidden="true"></span>
+              </div>
+            </div>
+            <p class="tradeoff"><b>Trade-off:</b> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. At vero eos et accusamus.</p>
+          </div>
+
+          <div class="pivot">
+            <div class="ic" aria-hidden="true">↻</div>
+            <div>
+              <p class="k">Pivot</p>
+              <h4>Lorem ipsum dolor sit amet consectetur adipiscing.</h4>
+              <p>
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
+              </p>
+              <p>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
+              </p>
+            </div>
+          </div>
+
+          <div class="decision" id="d2">
+            <div class="dhead">
+              <div class="dtitle"><span class="dn">Decision 2</span><h3>Sed do eiusmod tempor incididunt ut labore</h3></div>
+              <a class="anchor" href="#d2" title="Copy link to this decision">Link</a>
+            </div>
+            <div class="dpair">
+              <div class="dcol rejected">
+                <span class="dtag"><span class="mark" aria-hidden="true">✗</span>Rejected</span>
+                <div
+                  class="imgslot r-16-9"
+                  role="img"
+                  data-asset="placeholder.png"
+                  aria-label="Placeholder — visual to come."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it lost</span><p class="dpull"><span>Nam libero tempore.</span></p><p class="dwhy">Quis autem vel eum iure reprehenderit qui in ea voluptate velit.</p></div>
+              </div>
+              <div class="dcol shipped">
+                <span class="dtag"><span class="mark" aria-hidden="true">✓</span>Shipped</span>
+                <div
+                  class="imgslot r-16-9"
+                  role="img"
+                  data-asset="placeholder.png"
+                  aria-label="Placeholder — visual to come."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it won</span><p class="dpull"><span>Itaque earum rerum.</span></p><p class="dwhy">At vero eos et accusamus et iusto odio dignissimos ducimus.</p></div>
+                <span class="wipe" aria-hidden="true"></span>
+              </div>
+            </div>
+            <div class="statemap">
+              <table>
+                <caption>
+                  Placeholder table — lorem ipsum rows stand in for real data.
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Column A</th>
+                    <th scope="col">Column B</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Dolor</td>
+                  </tr>
+                  <tr>
+                    <td>Consectetur elit</td>
+                    <td>Sit amet</td>
+                  </tr>
+                  <tr>
+                    <td>Sed eiusmod</td>
+                    <td>Tempor</td>
+                  </tr>
+                  <tr>
+                    <td>Incididunt ut</td>
+                    <td>Labore</td>
+                  </tr>
+                  <tr>
+                    <td>Dolore magna</td>
+                    <td>Aliqua</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="tradeoff"><b>Trade-off:</b> Quis autem vel eum iure reprehenderit qui in ea voluptate velit. Et harum quidem rerum facilis.</p>
+          </div>
+
+          <div class="decision" id="d3">
+            <div class="dhead">
+              <div class="dtitle"><span class="dn">Decision 3</span><h3>Ut enim ad minim veniam quis nostrud</h3></div>
+              <a class="anchor" href="#d3" title="Copy link to this decision">Link</a>
+            </div>
+            <div class="dpair">
+              <div class="dcol rejected">
+                <span class="dtag"><span class="mark" aria-hidden="true">✗</span>Rejected</span>
+                <div
+                  class="imgslot r-32-15"
+                  role="img"
+                  data-asset="placeholder.png"
+                  aria-label="Placeholder — visual to come."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it lost</span><p class="dpull"><span>Temporibus autem.</span></p><p class="dwhy">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p></div>
+              </div>
+              <div class="dcol shipped">
+                <span class="dtag"><span class="mark" aria-hidden="true">✓</span>Shipped</span>
+                <div
+                  class="imgslot r-32-15"
+                  role="img"
+                  data-asset="placeholder.png"
+                  aria-label="Placeholder — visual to come."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it won</span><p class="dpull"><span>Quibusdam et aut.</span></p><p class="dwhy">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.</p></div>
+                <span class="wipe" aria-hidden="true"></span>
+              </div>
+            </div>
+            <p class="tradeoff"><b>Trade-off:</b> At vero eos et accusamus et iusto odio dignissimos ducimus. Nam libero tempore cum soluta.</p>
+          </div>
+        </section>
+
+        <section id="s-build" class="section">
+          <p class="kicker">04 · Build &amp; validate</p>
+          <h2 class="claim">At vero eos et accusamus et iusto.</h2>
+          <p>
+            Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id
+            quod maxime placeat facere possimus, omnis voluptas assumenda est.
+          </p>
+          <ul class="facts">
+            <li><b>Method:</b> Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.</li>
+            <li>
+              <b>Finding:</b> Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam.
+            </li>
+          </ul>
+          <div
+            class="imgslot r-2-1"
+            role="img"
+            data-asset="placeholder.png"
+            aria-label="Placeholder — visual to come."
+          ><span class="mp-chrome" aria-hidden="true"></span></div>
+          <p class="caption">Lorem ipsum dolor sit amet.</p>
+        </section>
+
+        <section id="s-final" class="section">
+          <p class="kicker">05 · Final design</p>
+          <h2 class="claim">Nemo enim ipsam voluptatem quia.</h2>
+          <div class="livelinks">
+            <a class="livelink static" href="#" aria-disabled="true"
+              ><span class="badge">Link</span>Placeholder</a
+            >
+          </div>
+          <div class="scrolly">
+            <div class="stage">
+              <div
+                class="imgslot r-4-5"
+                role="img"
+                data-asset="placeholder.png"
+                aria-label="Placeholder — final visual to come."
+              ><span class="mp-chrome" aria-hidden="true"></span></div>
+            </div>
+            <div class="steps">
+              <div class="callout active">
+                <span class="cn">1</span>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+              </div>
+              <div class="callout">
+                <span class="cn">2</span>
+                <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit.</p>
+              </div>
+              <div class="callout">
+                <span class="cn">3</span>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="s-outcomes" class="section">
+          <p class="kicker">06 · Outcomes</p>
+          <h2 class="claim">Itaque earum rerum hic tenetur.</h2>
+          <div class="mp-bleed">
+            <div class="outcomes">
+              <div class="ocard">
+                <span class="lens">Metric</span>
+                <div class="onum">+XX%</div>
+                <div class="olab">Lorem ipsum dolor sit amet.</div>
+                <div class="ometh">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
+              </div>
+              <div class="ocard">
+                <span class="lens">Metric</span>
+                <div class="onum">+XX%</div>
+                <div class="olab">Consectetur adipiscing elit.</div>
+                <div class="ometh">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.</div>
+              </div>
+              <div class="ocard">
+                <span class="lens">Metric</span>
+                <div class="onum">XX</div>
+                <div class="olab">Sed do eiusmod tempor.</div>
+                <div class="ometh">Quis autem vel eum iure reprehenderit qui in ea voluptate velit.</div>
+              </div>
+            </div>
+            <p class="caption">Ut labore et dolore.</p>
+          </div>
+          <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.
+          </p>
+        </section>
+
+        <section id="s-reflection" class="section">
+          <p class="kicker">07 · Reflection</p>
+          <h2 class="claim">Temporibus autem quibusdam et aut.</h2>
+          <ul class="facts">
+            <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</li>
+            <li>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.</li>
+            <li>Quis autem vel eum iure reprehenderit qui in ea voluptate velit.</li>
+            <li>At vero eos et accusamus et iusto odio dignissimos ducimus.</li>
+          </ul>
+        </section>
+
+        <section id="s-howbuilt" class="section">
+          <p class="kicker">08 · How it was built</p>
+          <h2 class="claim">Nam libero tempore cum soluta nobis.</h2>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+          <dl class="buildlist">
+            <div>
+              <dt>Tool</dt>
+              <dd>Lorem ipsum dolor sit amet.</dd>
+            </div>
+            <div>
+              <dt>Use</dt>
+              <dd>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+              </dd>
+            </div>
+            <div>
+              <dt>Change</dt>
+              <dd>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </main>
+    </div>
+
+    <!-- ============ END NAV ============ -->
+    <nav class="endnav" aria-label="More case studies">
+      <a class="endcard" href="index.html#work"
+        ><span class="k">← Back</span>
+        <h3>All work</h3></a
+      >
+      <a class="endcard next" href="mailto:aneiman.design@gmail.com"
+        ><span class="k">Next →</span>
+        <h3>Let's talk</h3></a
+      >
+    </nav>
+
+    <footer class="site">
+      <p>
+        Let's talk: <a href="mailto:aneiman.design@gmail.com">aneiman.design@gmail.com</a> ·
+        <a href="index.html#work">Back to all work</a> · © <span id="year">2026</span> Anna Neiman
+      </p>
+    </footer>
+
+    <!-- mobile outcome bar (real labelled region, NOT aria-hidden) -->
+    <div class="mobilebar" role="region" aria-label="Case outcome">
+      <span class="m-out">+XX%</span>
+      <span class="m-lab">metric</span>
+      <a class="m-jump" href="#s-outcomes">Outcomes ↓</a>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var hasIO = "IntersectionObserver" in window;
+
+        /* current year */
+        var y = document.getElementById("year");
+        if (y) y.textContent = new Date().getFullYear();
+
+        /* reading-progress bar */
+        var bar = document.getElementById("progress");
+        function onScroll() {
+          var h = document.documentElement;
+          var max = h.scrollHeight - h.clientHeight;
+          if (bar) bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+        }
+        document.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        /* 60-second panel: steps ease in once, only when motion is allowed */
+        var sixty = document.querySelector(".sixty");
+        if (sixty && hasIO && !reduce) {
+          sixty.classList.add("pre");
+          var sxo = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  sixty.classList.remove("pre");
+                  sxo.unobserve(sixty);
+                }
+              });
+            },
+            { threshold: 0.3 }
+          );
+          sxo.observe(sixty);
+        }
+
+        /* count-up (shared contract: data-prefix + value + data-suffix) */
+        function countUp(el) {
+          var target = parseFloat(el.dataset.count);
+          var pre = el.dataset.prefix || "",
+            suf = el.dataset.suffix || "";
+          var dec = target % 1 !== 0 ? 1 : 0;
+          if (reduce) {
+            el.textContent = pre + target.toFixed(dec) + suf;
+            return;
+          }
+          var start = null,
+            dur = 1100;
+          function step(t) {
+            if (!start) start = t;
+            var p = Math.min((t - start) / dur, 1),
+              e = 1 - Math.pow(1 - p, 3);
+            el.textContent = pre + (target * e).toFixed(dec) + suf;
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+        var counters = document.querySelectorAll("[data-count]");
+        if (hasIO && !reduce) {
+          var co = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  countUp(en.target);
+                  co.unobserve(en.target);
+                }
+              });
+            },
+            { threshold: 0.6 }
+          );
+          counters.forEach(function (c) {
+            co.observe(c);
+          });
+        } else {
+          counters.forEach(countUp);
+        }
+
+        /* decision reveal (check wipe), with no-IO fallback revealing all */
+        var decisions = document.querySelectorAll(".decision");
+        if (hasIO && !reduce) {
+          var dio = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  en.target.classList.add("in");
+                  dio.unobserve(en.target);
+                }
+              });
+            },
+            { threshold: 0.3 }
+          );
+          decisions.forEach(function (d) {
+            dio.observe(d);
+          });
+        } else {
+          decisions.forEach(function (d) {
+            d.classList.add("in");
+          });
+        }
+
+        /* scrollytelling callouts */
+        var callouts = Array.prototype.slice.call(document.querySelectorAll(".callout"));
+        if (hasIO) {
+          var cio = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  callouts.forEach(function (c) {
+                    c.classList.remove("active");
+                  });
+                  en.target.classList.add("active");
+                }
+              });
+            },
+            { rootMargin: "-45% 0px -45% 0px" }
+          );
+          callouts.forEach(function (c) {
+            cio.observe(c);
+          });
+        }
+
+        /* decision deep-link copy */
+        document.querySelectorAll(".dhead .anchor").forEach(function (a) {
+          a.addEventListener("click", function (e) {
+            e.preventDefault();
+            var url = location.href.split("#")[0] + a.getAttribute("href");
+            var done = function () {
+              var t = a.textContent;
+              a.textContent = "Copied";
+              setTimeout(function () {
+                a.textContent = t;
+              }, 1200);
+            };
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText(url).then(done, done);
+            } else {
+              history.replaceState(null, "", a.getAttribute("href"));
+              done();
+            }
+          });
+        });
+
+        /* spine nav scrollspy: set AND clear aria-current (exactly one) */
+        var navlinks = Array.prototype.slice.call(document.querySelectorAll(".spinenav a"));
+        var sections = navlinks
+          .map(function (a) {
+            return document.querySelector(a.getAttribute("href"));
+          })
+          .filter(Boolean);
+        if (hasIO) {
+          var sio = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  var i = sections.indexOf(en.target);
+                  navlinks.forEach(function (l, j) {
+                    if (j === i) {
+                      l.classList.add("active");
+                      l.setAttribute("aria-current", "true");
+                    } else {
+                      l.classList.remove("active");
+                      l.removeAttribute("aria-current");
+                    }
+                  });
+                }
+              });
+            },
+            { rootMargin: "-20% 0px -60% 0px" }
+          );
+          sections.forEach(function (s) {
+            sio.observe(s);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

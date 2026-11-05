@@ -1,0 +1,258 @@
+/* ============================================================
+   Anna Neiman — portfolio tokens + base.
+   Canonical, single source of truth. Loaded via <link> by BOTH
+   index.html and case-study.html, immediately before each page's
+   own stylesheet (assets/index.css / assets/case-study.css).
+   There is now exactly ONE copy of the :root token block + base
+   region (DESIGN.md §0) — no inline duplication to keep in sync.
+   Values verified against the Figma dump (node 54:1923) — §1.
+   ============================================================ */
+:root {
+  /* ---- color ---- */
+  --bg: #f6f3ed; /* page background */
+  --surface: #ffffff; /* hero/intro card */
+  --surface-warm: #fcfbf8; /* glass hobby/fun-fact card fill */
+  --cararra: #e8e5df; /* nav bar hairline stroke */
+  --cream: #f5efdf; /* thin about info-card dividers */
+  --ink: #313131; /* primary text, buttons, book spines */
+  --headline-brown: #2e1a0f; /* XL hero display name only */
+  --log-cabin: #1e1e1a; /* nav 'Home' active label text */
+  --flint: #6b6860; /* inactive nav link text */
+  --black: #000000; /* hobby/fun-fact card text */
+  --mark: #f0e3bf; /* soft warm highlighter for emphasis on light surfaces */
+
+  /* ---- marketplace polish (declared once here = single canonical source;
+     APPLIED only via .mp-scoped selectors in case-study.css, so case-study.html
+     and index.html are unaffected — a :root custom property paints nothing until
+     it is referenced). AA-verified pairings in design.md §1. ---- */
+  --accent: #a8341a; /* warm deep terracotta/rust */
+  --accent-ink: #ffffff; /* text placed ON an accent fill */
+  --accent-soft: rgba(168, 52, 26, 0.1); /* faint accent wash for tinted surfaces */
+  --surface-deep: #efe9e0; /* deeper second surface tone (below --bg) */
+  --frame-chrome: #e7e2d9; /* browser-frame title bar */
+  --frame-dot: #cfc8bc; /* window dots on the frame title bar */
+
+  /* ---- translucent / glass ---- */
+  --greeting-fill: rgba(49, 49, 49, 0.04);
+  --tag-divider: rgba(49, 49, 49, 0.08);
+  --nav-pill-fill: rgba(255, 255, 255, 0.56);
+  --nav-active-fill: rgba(232, 229, 223, 0.24);
+  --nav-active-stroke: rgba(232, 229, 223, 0.16);
+  --glass-fill: #fcfbf8;
+  --glass-stroke: rgba(43, 42, 38, 0.08);
+  /* Frosted "Project Info" glass panel that floats OVER the card image.
+     Figma specs dark text on a 26%-white glass, which does not guarantee WCAG AA
+     over an arbitrary image. We keep the frosted-glass feel but darken the fill and
+     use white text (Option 1 — darkened glass) so contrast clears AA over any image
+     or the grey placeholder. Measured white-on-this-fill ≈ 8:1+ (see VISUAL-QA.md). */
+  --overlay-fill: rgba(28, 22, 18, 0.68); /* warm dark translucent glass */
+  --overlay-stroke: rgba(255, 255, 255, 0.14); /* subtle light edge */
+  --overlay-text: #ffffff; /* title + category */
+  --overlay-text-soft: rgba(255, 255, 255, 0.92); /* description */
+
+  /* ---- placeholder (deliberate warm checker grid = "image goes here", pure CSS,
+     zero asset; two calm warm neutrals so it reads as a tasteful transparency grid,
+     not harsh black/white). Applied to every image/video slot on both pages. ---- */
+  --placeholder-check-a: #ece8e1; /* lighter warm neutral */
+  --placeholder-check-b: #e2ded7; /* slightly darker warm neutral */
+  --placeholder-check-size: 28px; /* checker tile size (reads as a grid, not noise) */
+
+  /* ---- shadow / blur ---- */
+  --shadow-card: 0 8px 24px rgba(30, 30, 26, 0.07);
+  --blur-card: blur(8px);
+  --blur-overlay: blur(8.7px);
+
+  /* ---- radius ---- */
+  --r-card: 16px;
+  --r-pill: 9999px;
+  --r-chip: 4px;
+  --r-spine: 3px;
+
+  /* ---- type families ---- */
+  --f-display: "Playfair Display", Georgia, serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-mono: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---- type scale (DESIGN.md §1 type-styles table). Semantic names are the
+     source of truth for each size; the numeric aliases below alias to them. ---- */
+  --t-display-xl: 6rem; /* 96px — PINNED (OPTION A) XL/L/M hero name, not fluid */
+  --t-display-hero: clamp(2.5rem, 5.2vw, 4rem); /* 64/64 L & M hero name */
+  --t-display-cs: clamp(2rem, 4.6vw, 3.4rem); /* ≈54 case-study <h1> */
+  --t-section: clamp(
+    2rem,
+    4vw,
+    3rem
+  ); /* 48 section + contact headlines; its own clamp covers the 36px M/S step */
+  --t-claim: clamp(1.3rem, 2.6vw, 1.9rem); /* case-study claim headings */
+  --t-badge-num: clamp(1.5rem, 3vw, 2.1rem); /* hero result-badge number */
+  --t-metric: clamp(1.25rem, 2.4vw, 1.75rem); /* Inter ExtraBold 28/24/20 */
+  --t-hook: clamp(1.05rem, 2vw, 1.3rem); /* case-study hook */
+  --t-hobby-desc: clamp(1rem, 1.4vw, 1.0625rem); /* Playfair 17/25.5 descriptor */
+  --t-card-title: 1rem; /* Inter Medium 16 */
+  --t-body: clamp(0.875rem, 1.1vw, 1rem); /* 14–16 body */
+  --t-kicker: clamp(0.625rem, 1vw, 0.75rem); /* Space Mono labels/nav */
+  /* The ordered type ladder (900→100) is documented in DESIGN.md §type-styles;
+     the SEMANTIC tokens above (--t-display-xl … --t-kicker) are the single source of
+     truth each rule uses, so no numeric --t-### aliases ship here (they were unused). */
+
+  /* ---- spacing scale (8px grid; the full ladder is kept intentionally as a
+     complete, ordered scale. --s-05 and --s-1025 are documented sub-steps) ---- */
+  --s-0: 0;
+  --s-05: 4px; /* legitimate Figma half-step */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-5: 40px;
+  --s-6: 48px;
+  --s-7: 56px;
+  --s-8: 64px;
+  --s-9: 72px;
+  --s-10: 80px;
+  --s-1025: 10px; /* documented off-grid EXCEPTION — Figma sub-step (used only where snapping to 8 would move the design) */
+
+  /* ---- named LAYOUT tokens (Figma-canonical non-8 frame values — intentional) ---- */
+  --gap-section: 60px; /* XL/L section gap */
+  --gap-section-m: 40px; /* M section gap */
+  --pad-frame-y: 60px; /* XL/L vertical page padding */
+  /* XL side padding (240) is derived geometrically from (100vw - --maxw)/2 at 1920,
+     so it needs no token — see body{padding-inline:max(...,--pad-l)} in index.css. */
+  --pad-l: 120px; /* L side padding */
+  --pad-m: 40px; /* M side padding */
+  --bento-gap: 28px; /* hero bento inter-card gap (Figma 28) */
+
+  /* ---- component dims pinned to the Figma dump (exact-frame fidelity, OPTION A) ---- */
+  --hero-card-w: 584px; /* XL Hero Card fixed width (dump #54:1365); L→459, M/S/XS→fill (stepped) */
+  --feat-img-h: 393px; /* XL featured image height (dump #54:1425); L→389, M→315 (stepped) */
+  --overlay-h: 120px; /* frosted Project Info panel height (dump) */
+  --overlay-inset: 1px; /* panel inset from the card edge (dump locationRelativeToParent x:1) */
+
+  /* ---- reading rhythm (case-study pages): one set of line-heights and stack
+     spacings so every block breathes the same way. All spacing sits on the 8px scale. ---- */
+  --lh-display: 1.12; /* h1, the 60-second line */
+  --lh-heading: 1.28; /* section claims (Playfair 900) */
+  --lh-title: 1.35; /* card titles (Inter 700) */
+  --lh-body: 1.7; /* 16px reading text */
+  --lh-small: 1.6; /* 13-15px card text and notes */
+  --lh-label: 1.4; /* mono labels */
+  --stack-label: var(--s-1); /* label to heading: 8 */
+  --stack-heading: var(--s-2); /* heading to text: 16 */
+  --stack-para: var(--s-2); /* paragraph to paragraph: 16 */
+  --stack-block: var(--s-3); /* text to a component: 24 */
+  --card-pad: var(--s-3); /* inside every card: 24 */
+  --card-gap: var(--s-2); /* between cards: 16 */
+  --section-y: var(--s-7); /* above and below a section: 56 */
+
+  /* ---- layout ---- */
+  --maxw: 1440px;
+  --ls: 0.04em;
+}
+
+/* ---- reset ---- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--f-body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  letter-spacing: var(--ls);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+ul,
+ol {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4 {
+  /* Headings default to the Playfair display face so no heading can silently fall
+     through to the body font (Inter) again — this is the root fix for the hero name
+     (.hero-name) rendering in Inter (it set size/color but no family). Every heading
+     that is intentionally NOT Playfair (section/bookshelf kickers that are h2.kicker,
+     the case-study .summary-card/.spinenav h2 labels, and the Inter .dhead h3 /
+     .pivot h4 / .endcard h3) already sets its own family via its selector, so this
+     default only ever catches a heading that forgot to declare one. Verified 1:1 with
+     Figma node 54:1365 (text 54:1368 = Playfair Display Black 900, 96/92). */
+  font-family: var(--f-display);
+  line-height: 1.08;
+  font-weight: 900;
+  letter-spacing: var(--ls);
+}
+
+/* ---- visible focus (never removed) ---- */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- skip link ---- */
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -56px;
+  z-index: 300;
+  background: var(--ink);
+  color: #fff;
+  padding: var(--s-1) var(--s-2);
+  border-radius: var(--r-pill);
+  font: 500 14px var(--f-body);
+  letter-spacing: var(--ls);
+  transition: top 0.18s ease;
+}
+.skip:focus {
+  top: 12px;
+}
+
+/* ---- warm checker-grid placeholder (one shared pattern, both pages) ----
+   A classic transparency-grid checker built from two layered conic-gradients so it
+   stays crisp at any DPR with no image asset. Reads unmistakably as "image goes here". */
+.placeholder,
+.imgslot,
+.videoslot {
+  background-color: var(--placeholder-check-a);
+  background-image: conic-gradient(
+    var(--placeholder-check-b) 25%,
+    transparent 0 50%,
+    var(--placeholder-check-b) 0 75%,
+    transparent 0
+  );
+  background-size: calc(var(--placeholder-check-size) * 2) calc(var(--placeholder-check-size) * 2);
+  background-position: 0 0;
+}
+
+/* ---- reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

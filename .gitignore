@@ -1,0 +1,13 @@
+# Dependencies (the verification harness regenerates these via npm install)
+node_modules/
+
+# Dev harness artifacts (screenshots + baseline snapshots are regenerable)
+tests/screens/
+tests/baseline-*.json
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

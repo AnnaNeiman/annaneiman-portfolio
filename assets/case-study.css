@@ -1,0 +1,1606 @@
+/* ============================================================
+   CASE STUDY component + layout CSS (case-study.html).
+   Loaded AFTER assets/styles.css (tokens + base). Re-skin of the
+   mid-fi master (§4): warm-minimal tokens; every interaction +
+   honest label preserved. No tokens/base here — single canonical
+   copy lives in styles.css (DESIGN.md §0).
+   ============================================================ */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-inline: clamp(24px, 6vw, 120px);
+}
+.kicker {
+  font: 400 12px/var(--lh-label) var(--f-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--flint);
+}
+.caption {
+  font: 400 13.5px/var(--lh-small) var(--f-body);
+  color: var(--flint);
+  margin-top: var(--s-1025);
+  display: block;
+  position: relative;
+  padding-left: var(--s-2);
+}
+.caption::before {
+  content: "▸";
+  color: var(--flint);
+  position: absolute;
+  left: 0;
+}
+.section .caption {
+  max-width: none;
+}
+.caption code {
+  font: 400 12px var(--f-mono);
+}
+.caption.spaced {
+  margin-top: var(--s-5);
+} /* was inline style="margin-top:40px" */
+em.serif {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 400;
+}
+.role-note {
+  color: var(--flint);
+} /* was inline style="color:var(--flint)" */
+
+/* reading progress */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--ink);
+  z-index: 150;
+  transition: width 0.1s linear;
+}
+
+/* top nav — glassy bar matching the homepage nav language. The homepage nav pill
+   sits 12px off the top; the case study uses a full-width sticky bar (back-link +
+   primary nav) but keeps the same 12px top offset so the first-paint top spacing
+   reads identically across the two pages. */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px clamp(16px, 4vw, 40px);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: var(--blur-card);
+  -webkit-backdrop-filter: var(--blur-card);
+  border-bottom: 1px solid var(--cararra);
+}
+@supports not ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+  .topbar {
+    background: rgba(246, 243, 237, 0.96);
+  }
+}
+.topbar .back {
+  font: 400 13px/1 var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--flint);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+}
+.topbar .back:hover {
+  color: var(--ink);
+}
+.topbar nav {
+  margin-left: auto;
+  display: flex;
+  gap: var(--s-05);
+}
+.topbar nav a {
+  font: 400 14px var(--f-body); /* Figma nav links = Inter, not Space Mono (matches homepage nav) */
+  color: var(--flint);
+  padding: 6px var(--s-2);
+  border-radius: var(--r-pill);
+  border: 1px solid transparent;
+  min-height: 40px;
+  line-height: 22px;
+}
+.topbar nav a:hover {
+  color: var(--ink);
+}
+.topbar nav a[aria-current="page"] {
+  color: var(--log-cabin);
+  background: var(--nav-active-fill);
+  border-color: var(--nav-active-stroke);
+}
+
+/* hero — top spacing steps with the shared frame gap (60/40/32/24) so the
+   nav→hero breathing room matches the homepage at every breakpoint. Bottom padding
+   is the frame gap too, opening the same section rhythm into the body grid. */
+.hero {
+  padding: var(--gap-section) 0;
+}
+.hero .wrap {
+  display: grid;
+  gap: var(--s-5);
+}
+.hero-head {
+  max-width: 900px;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) 12px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.chip {
+  font: 400 12px/1 var(--f-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--flint);
+  background: var(--surface);
+  border: 1px solid var(--cararra);
+  border-radius: var(--r-pill);
+  padding: 6px 12px;
+}
+.hero h1 {
+  font-family: var(--f-display);
+  font-size: var(--t-display-cs);
+  line-height: var(--lh-display);
+  color: var(--ink);
+  max-width: 20ch;
+}
+.hero .hook {
+  font-size: var(--t-hook);
+  color: var(--ink);
+  max-width: 62ch;
+  margin-top: var(--stack-block);
+  line-height: 1.5;
+  font-weight: 400;
+}
+.hero-figure {
+  position: relative;
+}
+.imgslot {
+  border-radius: var(--r-card);
+  display: grid;
+  place-items: center;
+  color: var(--flint);
+  font: 400 12px var(--f-mono);
+  min-height: 200px;
+  position: relative;
+}
+.imgslot.research {
+  min-height: 160px;
+  margin-top: var(--s-2);
+} /* was inline min-height:160px;margin-top:16px */
+.imgslot.beforeafter {
+  min-height: 170px;
+} /* was inline min-height:170px */
+.hero-figure .imgslot {
+  min-height: min(52vw, 440px);
+}
+/* result badge — same darkened-glass treatment as the homepage featured-card
+   overlay (Option 1): a frosted warm-dark panel floating over the BOTTOM of the
+   hero image, white-on-dark text that clears AA over any image/grey. Bottom-anchored
+   ~16px inset (fully inside the figure — no overhang). */
+.result-badge {
+  position: absolute;
+  left: var(--s-2);
+  right: var(--s-2);
+  bottom: var(--s-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  overflow: hidden;
+  background: var(--overlay-fill);
+  border: 1px solid var(--overlay-stroke);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--s-2) var(--s-3);
+  backdrop-filter: var(--blur-overlay);
+  -webkit-backdrop-filter: var(--blur-overlay);
+}
+.result-badge .stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--overlay-text);
+}
+.result-badge .num {
+  font: 800 var(--t-badge-num) var(--f-body);
+  letter-spacing: var(--ls);
+  color: var(--overlay-text);
+}
+.result-badge .lab {
+  font: 400 12px/1.3 var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--overlay-text-soft);
+}
+.illus {
+  font: 400 12px var(--f-mono);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  /* de-emphasis comes from the smaller mono size + the "(illustrative)" framing,
+     NOT opacity — a fade here dropped the --flint "(illustrative)" note on .ometh
+     below WCAG AA (axe serious color-contrast). Full opacity keeps it ≥4.5:1. */
+}
+
+/* body grid — the rail↔story gap steps with the shared frame gap so the two
+   columns breathe consistently with the homepage bento. Top margin is 0: the hero's
+   frame-gap bottom padding already opens the section rhythm above the grid. */
+.body-grid {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: var(--gap-section);
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-inline: clamp(24px, 6vw, 120px);
+  align-items: start;
+}
+.rail,
+.story {
+  min-width: 0;
+}
+
+/* rail: the summary scrolls away with the story; only the section nav sticks, so it
+   is always reachable. The rail stretches to the full grid height so sticky has room. */
+.rail {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.summary-card {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--card-pad);
+}
+.summary-card h2 {
+  font: 400 12px/1 var(--f-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--flint);
+  margin-bottom: var(--s-2);
+}
+.sfield {
+  padding: var(--s-2) 0;
+  border-top: 1px solid var(--tag-divider);
+  display: grid;
+  gap: var(--s-1);
+}
+.sfield:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+.sfield .k {
+  font: 400 12px/1 var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--flint);
+}
+.sfield .v {
+  font-size: 14px;
+  line-height: var(--lh-small);
+  color: var(--ink);
+}
+.tmpl-note {
+  margin-top: 12px;
+  font: 400 12px/1.5 var(--f-body);
+  color: var(--flint);
+  background: var(--greeting-fill);
+  border: 1px dashed var(--cararra);
+  border-radius: var(--r-chip);
+  padding: 8px 10px;
+}
+.spinenav {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--s-2) var(--s-2) var(--s-2) 0;
+  position: sticky;
+  top: 76px;
+}
+.spinenav h2 {
+  font: 400 12px/1 var(--f-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--flint);
+  margin: 0 0 10px 18px;
+}
+.spinenav a {
+  display: block;
+  padding: var(--s-1) 0 var(--s-1) 18px;
+  font: 400 14px/1.35 var(--f-body);
+  color: var(--flint);
+  border-left: 2px solid var(--tag-divider);
+  margin-left: 7px;
+}
+.spinenav a:hover {
+  color: var(--ink);
+}
+.spinenav a.active {
+  color: var(--ink);
+  font-weight: 500;
+  border-left-color: var(--ink);
+}
+.jump {
+  margin: 12px 0 0 18px;
+}
+.jump a {
+  font: 400 12px var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.readtime {
+  font: 400 12px var(--f-mono);
+  color: var(--flint);
+  margin: 10px 0 0 18px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* story column */
+.story {
+  max-width: 720px;
+}
+.section {
+  padding: var(--section-y) 0;
+  scroll-margin-top: 80px;
+  border-bottom: 1px solid var(--tag-divider);
+}
+.section:last-child {
+  border-bottom: 0;
+}
+.section > .kicker {
+  margin-bottom: var(--s-1);
+}
+.section h2.claim {
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: var(--t-claim);
+  line-height: var(--lh-heading);
+  margin-bottom: var(--stack-heading);
+  text-wrap: balance;
+  color: var(--ink);
+}
+.section p {
+  color: var(--ink);
+  margin: var(--stack-para) 0;
+  max-width: 68ch;
+  line-height: var(--lh-body);
+}
+.section .lead {
+  font-size: 1.08rem;
+  max-width: 63ch; /* 68ch at body size, so the lead's right edge matches the paragraphs */
+}
+.outcomes + .caption,
+.insights + .caption {
+  margin-top: var(--s-2);
+}
+.section p,
+.hero .hook,
+.tldr p {
+  text-wrap: pretty;
+}
+.hero h1,
+.decision .dhead h3,
+.pivot h4,
+.endcard h3 {
+  text-wrap: balance;
+}
+/* real bullet lists inside story sections (global reset strips list-style) */
+.section ul.facts {
+  list-style: disc;
+  padding-left: var(--s-3);
+  margin: var(--stack-para) 0;
+  max-width: 68ch;
+  line-height: var(--lh-body);
+}
+.section ul.facts li {
+  margin: var(--s-1) 0;
+  padding-left: var(--s-05);
+}
+
+/* TL;DR */
+.tldr {
+  background: var(--surface);
+  border-left: 3px solid var(--ink);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 18px 20px;
+  margin-bottom: var(--s-2);
+}
+.tldr .k {
+  font: 400 12px var(--f-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--flint);
+  display: block;
+  margin-bottom: var(--s-1);
+}
+.tldr p {
+  font-size: 1.02rem;
+  color: var(--ink);
+  margin: 0;
+  max-width: 64ch;
+}
+
+/* insights */
+.insights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--card-gap);
+  margin-top: var(--stack-block);
+}
+.insight {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--card-pad);
+}
+.insight .n {
+  font: 700 13px var(--f-mono);
+  color: var(--flint);
+}
+.insight em.hl {
+  font-style: normal;
+  font-weight: 500;
+  background: linear-gradient(transparent 56%, var(--mark) 56%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+.insight p {
+  font-size: 15px;
+  line-height: var(--lh-small);
+  margin: var(--s-1) 0 0;
+}
+@media (max-width: 620px) {
+  .insights {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* decision block */
+.decision {
+  margin: var(--s-4) 0;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+.decision .dhead {
+  padding: var(--s-2) var(--card-pad);
+  border-bottom: 1px solid var(--tag-divider);
+  display: flex;
+  gap: var(--s-2);
+  align-items: center;
+}
+.decision .dhead .dtitle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-05);
+  min-width: 0;
+}
+.decision .dhead .dn {
+  font: 400 12px/var(--lh-label) var(--f-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--flint);
+}
+.decision .dhead h3 {
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls);
+  min-width: 0;
+}
+.dhead .anchor {
+  margin-left: auto;
+  flex: none;
+  white-space: nowrap;
+  font: 400 12px var(--f-mono);
+  color: var(--flint);
+  border: 1px solid var(--cararra);
+  border-radius: var(--r-pill);
+  padding: 4px 10px;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+.dhead .anchor:hover {
+  color: var(--ink);
+  border-color: var(--flint);
+}
+.dpair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--tag-divider);
+}
+.dcol {
+  background: var(--surface);
+  padding: var(--card-pad);
+  display: flex;
+  flex-direction: column;
+}
+.dcol .caption {
+  margin-top: var(--s-1025);
+}
+/* the verdict under each image: a label, a short bold reason, one plain sentence.
+   Lost = quiet grey panel. Won = warm highlighter, which sweeps in with the decision. */
+.dcol .dnote {
+  margin-top: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border-radius: 12px;
+  border-left: 2px solid var(--flint);
+  background: var(--greeting-fill);
+}
+.dcol.shipped .dnote {
+  border-left-color: var(--ink);
+  background: rgba(240, 227, 191, 0.3);
+}
+.dcol .dlabel {
+  display: block;
+  font: 400 12px/var(--lh-label) var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--flint);
+  margin-bottom: var(--s-1);
+}
+.dcol .dnote .dpull {
+  margin: 0 0 var(--s-1);
+  max-width: none;
+  font: 900 1.2rem/1.25 var(--f-display);
+  color: var(--flint);
+}
+.dcol.shipped .dnote .dpull {
+  color: var(--ink);
+}
+.dcol.shipped .dnote .dpull span {
+  background: linear-gradient(var(--mark), var(--mark)) no-repeat 0 88% / 0% 0.5em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 0.8s cubic-bezier(0.16, 0.84, 0.44, 1) 0.45s;
+}
+.decision.in .dcol.shipped .dnote .dpull span {
+  background-size: 100% 0.5em;
+}
+.dcol .dnote .dwhy {
+  margin: 0;
+  max-width: none;
+  font: 400 14.5px/var(--lh-small) var(--f-body);
+  color: var(--ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dcol.shipped .dnote .dpull span {
+    background-size: 100% 0.5em;
+    transition: none;
+  }
+}
+.decision > .codeblock {
+  margin: 0;
+  border-radius: 0;
+  padding: var(--s-2) var(--card-pad);
+}
+.dcol.rejected {
+  background: var(--surface);
+}
+.dcol.shipped {
+  background: var(--surface-warm);
+  position: relative;
+}
+.dcol .dtag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font: 400 12px var(--f-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--s-2);
+}
+.dcol.rejected .dtag {
+  color: var(--flint);
+}
+.dcol.shipped .dtag {
+  color: var(--ink);
+}
+.dcol .mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+.dcol.rejected .mark {
+  background: var(--flint);
+}
+.dcol.shipped .mark {
+  background: var(--ink);
+}
+.dcol .imgslot {
+  min-height: 130px;
+}
+.dcol.shipped .wipe {
+  position: absolute;
+  inset: 0;
+  background: var(--surface-warm);
+  transform-origin: left;
+  transition: transform 0.7s cubic-bezier(0.16, 0.84, 0.44, 1);
+  z-index: 2;
+}
+.decision.in .dcol.shipped .wipe {
+  transform: scaleX(0);
+}
+.decision .tradeoff,
+.decision .collab {
+  max-width: none;
+  margin: 0;
+}
+.tradeoff {
+  padding: var(--card-pad);
+  line-height: var(--lh-small);
+  background: var(--surface-warm);
+  border-top: 1px solid var(--tag-divider);
+  font-size: 15px;
+  color: var(--ink);
+}
+.tradeoff b {
+  color: var(--ink);
+  font-weight: 700;
+}
+.collab {
+  font: 400 13px/var(--lh-small) var(--f-body);
+  color: var(--flint);
+  padding: var(--s-2) var(--card-pad);
+  border-top: 1px solid var(--tag-divider);
+  display: block;
+}
+.collab::before {
+  content: "With";
+  display: block;
+  font: 700 12px var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--flint);
+  margin-bottom: var(--s-05);
+}
+/* decision code block — wraps rather than scrolls so it never clips at frame widths
+   (min-width:0 on rail/story lets the grid track shrink; pre wraps long tokens). */
+.codeblock {
+  background: #232320;
+  color: #efece4;
+  border-radius: var(--r-card);
+  padding: 14px var(--s-2);
+  margin-top: 14px;
+  font: 13px/1.6 var(--f-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.codeblock .c {
+  color: #9b968c;
+}
+.codeblock .s {
+  color: #d8c7a0;
+}
+@media (max-width: 620px) {
+  .dpair {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* pivot */
+.pivot {
+  display: flex;
+  gap: var(--s-2);
+  background: var(--surface-warm);
+  border: 1px solid var(--cararra);
+  border-radius: var(--r-card);
+  padding: var(--card-pad);
+  margin: var(--s-4) 0;
+}
+.pivot .ic {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+}
+.pivot .k {
+  font: 400 12px/var(--lh-label) var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--flint);
+}
+.pivot > div:last-child {
+  min-width: 0;
+}
+.pivot h4 {
+  font-family: var(--f-body);
+  font-size: 1.05rem;
+  line-height: var(--lh-title);
+  font-weight: 700;
+  margin: var(--s-05) 0 var(--s-1);
+  letter-spacing: var(--ls);
+}
+.pivot p {
+  margin: 0 0 var(--s-1);
+  font-size: 15px;
+  line-height: var(--lh-small);
+}
+.pivot p:last-child {
+  margin-bottom: 0;
+}
+
+/* live links + video */
+.livelinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1025);
+  margin: var(--s-2) 0;
+}
+.livelinks.tight {
+  margin: var(--s-1025) 0;
+} /* was inline style="margin:14px 0" → nearest token */
+.livelink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  font: 500 13px var(--f-body);
+  letter-spacing: var(--ls);
+  border: 1px solid var(--cararra);
+  border-radius: var(--r-pill);
+  padding: var(--s-1) var(--s-2);
+  color: var(--ink);
+  min-height: 40px;
+}
+.livelink:hover {
+  background: var(--surface);
+}
+.livelink.static {
+  cursor: default;
+} /* was inline style="cursor:default" */
+.livelink .badge {
+  font: 400 12px var(--f-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--r-pill);
+  padding: 2px 7px;
+}
+.videoslot {
+  position: relative;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  min-height: 240px;
+  display: grid;
+  place-items: center;
+  margin-top: var(--s-2);
+}
+.videoslot .play {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--cararra);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  color: var(--ink);
+}
+.videoslot .vlab {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  font: 400 12px var(--f-mono);
+  color: var(--flint);
+}
+.videoslot .vcc {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font: 400 12px var(--f-mono);
+  background: var(--surface);
+  border: 1px solid var(--cararra);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--ink);
+}
+
+/* scrollytelling */
+.scrolly {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 256px;
+  gap: var(--s-3);
+  margin-top: var(--stack-block);
+  align-items: start;
+}
+.scrolly .stage {
+  position: sticky;
+  top: 80px;
+}
+.scrolly .stage .imgslot {
+  min-height: min(68vh, 560px);
+}
+.scrolly .steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20vh;
+  padding: 6vh 0;
+}
+.callout {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--s-2) var(--s-3);
+  /* Inactive callouts dim to signal the active scrolly step, but stay ≥0.7 so the
+     --ink body text clears WCAG AA (5:1) even when dimmed — 0.45 failed axe. */
+  opacity: 0.7;
+  transform: translateY(8px);
+  transition:
+    opacity 0.4s,
+    transform 0.4s;
+}
+.callout.active {
+  opacity: 1;
+  transform: none;
+}
+.callout .cn {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font: 700 12px var(--f-mono);
+  margin-bottom: 8px;
+}
+.callout p {
+  font-size: 15px;
+  line-height: var(--lh-small);
+  margin: 0;
+}
+@media (max-width: 880px) {
+  .scrolly {
+    grid-template-columns: 1fr;
+  }
+  .scrolly .stage {
+    position: static;
+  }
+  .scrolly .steps {
+    gap: var(--s-2);
+    padding: var(--s-2) 0;
+  }
+  .callout {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* outcomes */
+.outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--card-gap);
+  margin-top: var(--stack-block);
+}
+.ocard {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--card-pad);
+}
+.ocard .lens {
+  font: 400 12px var(--f-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--flint);
+  margin-bottom: var(--s-1025);
+  display: block;
+}
+.ocard .onum {
+  font: 800 2rem var(--f-body);
+  letter-spacing: var(--ls);
+  color: var(--ink);
+}
+.ocard .olab {
+  font-weight: 700;
+  margin: var(--s-05) 0 var(--s-1);
+  font-size: 15px;
+  line-height: var(--lh-title);
+}
+.ocard .ometh {
+  font: 400 13px/var(--lh-small) var(--f-body);
+  color: var(--flint);
+}
+@media (max-width: 620px) {
+  .outcomes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* outcomes — marketplace Tier 1 (loudest); .mp-scoped so case-study.html is unaffected */
+.mp .outcomes {
+  gap: var(--s-3);
+}
+.mp .ocard {
+  /* Accent painted as an inset box-shadow bar (not a border-top) so it hugs the
+     16px --r-card top corners with no gap, instead of a 3px arc floating above a
+     rounded card. Matches the .dcol.shipped inset-spine accent language. The 1px
+     --cararra border stays uniform on all sides for a defined edge; the outer
+     drop shadow is preserved. Accent-on-surface boundary holds C1 >=3:1. */
+  border: 1px solid var(--cararra);
+  box-shadow:
+    inset 0 3px 0 var(--accent),
+    0 10px 30px rgba(30, 30, 26, 0.1);
+  padding: var(--s-4);
+}
+.mp .ocard .lens {
+  color: var(--accent);
+}
+.mp .ocard .onum {
+  font-size: 2.6rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* decision pair — marketplace Tier 2 (crisper lost-vs-won); .mp-scoped so
+   case-study.html is unaffected. The base .wipe reveal and .dnote highlighter
+   sweep are left intact; only the shipped .wipe cover color is re-matched to the
+   new card surface so the reveal stays seamless (see below). */
+.mp .dcol.rejected {
+  background: var(--surface-deep);
+}
+/* AA contrast fix: the 12px flint mono labels inside the rejected column
+   (.dlabel "Why it lost", .dtag "✗ Rejected") drop below 4.5:1 on the new
+   --surface-deep background (flint is 4.31:1 under the .dnote greeting-fill
+   overlay). Darken only these small labels to --ink (~10.78:1 on
+   --surface-deep). .mp-scoped so case-study.html's light-surface rejected
+   column keeps its flint labels as designed. .dpull (large/900, 3:1 applies)
+   and .dwhy (already --ink) are left intact. */
+.mp .dcol.rejected .dlabel {
+  color: var(--ink);
+}
+.mp .dcol.rejected .dtag {
+  color: var(--ink);
+}
+.mp .dcol.shipped {
+  background: var(--surface);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.mp .dcol.shipped .mark {
+  background: var(--accent);
+}
+.mp .dpair {
+  gap: 2px;
+  background: var(--cararra);
+}
+/* the wipe cover sits over the shipped card at z-index:2 and scales away on
+   reveal; its fill must match the card beneath it (now --surface, not
+   --surface-warm) so no 1px seam shows at the receding edge mid-animation. */
+.mp .dcol.shipped .wipe {
+  background: var(--surface);
+}
+
+/* insights — marketplace Tier 3 (quietest); .mp-scoped so case-study.html is
+   unaffected. Drops the card shadow to a flat tinted panel on the deeper surface
+   with a hairline, so insights read as supporting detail. Text stays AA: p/title
+   ink on --surface-deep is C5 10.78:1; the .n number is already flint (C6 4.61:1,
+   left unchanged). Depth/scale ranking after this: Outcomes (1px border + accent
+   top-edge + 30px shadow + larger padding) > Decision columns (inset accent spine /
+   deep-surface recede) > Insights (hairline, no shadow, deep surface). */
+.mp .insight {
+  background: var(--surface-deep);
+  box-shadow: none;
+  border: 1px solid var(--cararra);
+}
+
+/* outcomes band — the single full-bleed / scale-contrast moment (design §3).
+   .mp-scoped so case-study.html is unaffected. The scale-contrast "peak" is a quiet
+   deep-surface section tint — a background band, NOT a card. It deliberately has no
+   accent top edge and no border-radius so the only accent-edged, rounded objects on
+   this plane are the .ocard cards inside it (one accent-edge owner, no nested-card
+   look). Larger padding gives the cards breathing room. The band stays fully inside
+   the .story column (max-width:720px, padding:0) — no negative margins, no 100vw /
+   calc(50% - 50vw) — so it can never pull outside the column and cause in-column or
+   page overflow. The caption inside is --flint on --surface-deep (C6 4.61:1, AA);
+   no new text is added. */
+.mp .mp-bleed {
+  background: var(--surface-deep);
+  padding: var(--s-5);
+}
+.mp .mp-bleed .outcomes {
+  margin-top: 0;
+  /* shrinkable tracks (min 0, not min-content) so the 3-up outcomes grid always
+     fits inside the band's padded content box and can never push past the .story
+     column — the band is column-bounded with no negative margins to borrow width. */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+/* narrow screens: step the padding down to var(--s-3). No margin-inline here either
+   — the band remains column-bounded at every width, so there is zero horizontal
+   overflow at 375px. */
+@media (max-width: 620px) {
+  .mp .mp-bleed {
+    padding: var(--s-3);
+  }
+  /* at ≤620 the outcomes grid is single-column (matches the base .outcomes
+     collapse); restore 1fr so the band's 3-up override does not force three
+     columns into the narrow band and overflow. */
+  .mp .mp-bleed .outcomes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* staged browser-frame placeholder slots — .mp-scoped so case-study.html slots stay
+   plain checker grids. The chrome is absolutely positioned + pointer-events:none, and
+   the checker paint is shifted 28px down (paint-only), so neither touches the slot box.
+   Box size stays owned by the (0,3,0) aspect-ratio rules above (min-height:0), so a
+   future <img> (position:absolute; inset:0; z-index:2) drops in with zero layout shift. */
+.mp .imgslot {
+  position: relative;
+  overflow: hidden;
+  background-position: 0 28px;
+}
+.mp .imgslot .mp-chrome {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 28px;
+  background: var(--frame-chrome);
+  border-bottom: 1px solid var(--cararra);
+  border-radius: var(--r-card) var(--r-card) 0 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.mp .imgslot .mp-chrome::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  width: 44px;
+  height: 8px;
+  background: radial-gradient(circle 4px at 4px 4px, var(--frame-dot) 98%, transparent) 0 0 /
+    16px 8px repeat-x;
+}
+.mp .imgslot > img {
+  z-index: 2;
+}
+
+/* refined hover — marketplace craft detailing (§5); .mp-scoped so case-study.html
+   is unaffected. .mp .endcard:hover (0,2,0 + pseudo) outranks the base
+   .endcard:hover (0,1,0 + pseudo), deepening the lift to -3px with a stronger
+   shadow. livelink/anchor hover adopt the accent border + text color (C1 5.98:1 /
+   C2 6.62:1 on white/--bg, both AA ≥4.5:1; the border is a non-text boundary ≥3:1).
+   Transform only applies on :hover (pointer), matching the existing .endcard
+   pattern already covered by the global prefers-reduced-motion guard. */
+.mp .endcard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(30, 30, 26, 0.12);
+}
+.mp .livelink:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.mp .dhead .anchor:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+/* refined focus — marketplace craft detailing (§5); .mp-scoped so case-study.html
+   is unaffected. The global :focus-visible rule in styles.css (outline: 2px solid
+   var(--ink); outline-offset: 3px; border-radius: 4px) is KEPT and NOT weakened
+   (Req 8.3) — it remains the guaranteed-safe default. This rule ONLY overrides the
+   outline COLOR to accent and re-states the 3px offset on marketplace links/buttons;
+   the 2px width and the visible ring are inherited from the global rule, so the ring
+   is never thinner, invisible, or removed. Accent on --bg/--surface is C1 5.98:1 /
+   C2 6.62:1, clearing the ≥3:1 non-text boundary threshold for a focus indicator, so
+   the ring stays AA-visible. */
+.mp a:focus-visible,
+.mp button:focus-visible {
+  outline-color: var(--accent);
+  outline-offset: 3px;
+}
+
+/* how built */
+.built {
+  border-radius: var(--r-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-top: var(--s-3);
+}
+.built summary {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--s-2) 18px;
+  display: flex;
+  align-items: center;
+  gap: var(--s-1025);
+  font-weight: 700;
+}
+.built summary::-webkit-details-marker {
+  display: none;
+}
+.built summary .tw {
+  margin-left: auto;
+  font: 400 12px var(--f-mono);
+  color: var(--flint);
+}
+.built .inner {
+  padding: 0 18px 18px;
+  border-top: 1px solid var(--tag-divider);
+}
+.built .inner p {
+  max-width: 68ch;
+}
+.built .arc {
+  margin: 14px 0;
+  display: grid;
+  gap: var(--s-1025);
+}
+.built .arc .step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-1025);
+  font-size: 14px;
+}
+.built .arc .step .lbl {
+  font: 400 12px var(--f-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--flint);
+  background: var(--greeting-fill);
+  border-radius: var(--r-chip);
+  padding: 3px var(--s-1);
+  white-space: nowrap;
+  align-self: start;
+}
+
+/* end nav + footer */
+.endnav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: var(--gap-section) auto;
+  max-width: var(--maxw);
+  padding-inline: clamp(24px, 6vw, 120px);
+}
+.endcard {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--card-pad);
+  color: inherit;
+  transition: transform 0.18s ease;
+}
+.endcard:hover {
+  transform: translateY(-2px);
+}
+.endcard.next {
+  text-align: right;
+} /* was inline style="text-align:right" */
+.endcard .k {
+  font: 400 12px var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--flint);
+}
+.endcard h3 {
+  margin-top: 6px;
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: var(--ls);
+}
+footer.site {
+  border-top: 1px solid var(--tag-divider);
+  padding: 30px clamp(24px, 6vw, 120px);
+  text-align: center;
+  color: var(--flint);
+  font-size: 14px;
+}
+footer.site a {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* mobile outcome bar */
+.mobilebar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 120;
+  display: none;
+  gap: 14px;
+  align-items: center;
+  padding: var(--s-1025) var(--s-2);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: var(--blur-card);
+  -webkit-backdrop-filter: var(--blur-card);
+  border-top: 1px solid var(--cararra);
+}
+.mobilebar .m-out {
+  font: 800 15px var(--f-body);
+  letter-spacing: var(--ls);
+}
+.mobilebar .m-lab {
+  font: 400 12px var(--f-mono);
+  text-transform: uppercase;
+  color: var(--flint);
+  line-height: 1.2;
+}
+.mobilebar .m-jump {
+  margin-left: auto;
+  font: 400 12px var(--f-mono);
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--cararra);
+  border-radius: var(--r-pill);
+  padding: var(--s-1) 12px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---- shared frame-gap stepping (matches the homepage frame table 60/40/32/24) ----
+   The section-rhythm token --gap-section drives the nav→hero, hero→body, and
+   rail↔story breathing room. Step it to the SAME Figma frame values the homepage
+   uses (XL/L 60 → M 40 → S 32 → XS 24) at the SAME frame widths (1280/960/640), so
+   navigating homepage↔case-study keeps one consistent vertical rhythm. These are
+   token steps only; the §4.2 layout queries (900/880/620/560) below are untouched. */
+@media (max-width: 1280px) {
+  :root {
+    --gap-section: var(--gap-section-m);
+  }
+} /* 40 at M */
+@media (max-width: 960px) {
+  :root {
+    --gap-section: var(--s-4);
+  }
+} /* 32 at S */
+@media (max-width: 640px) {
+  :root {
+    --gap-section: var(--s-3);
+  }
+} /* 24 at XS */
+
+/* ---- case-study breakpoints (master's canonical set, re-skinned — §4.2) ---- */
+@media (max-width: 900px) {
+  .body-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .rail {
+    position: static;
+    flex-direction: column;
+  }
+  .spinenav {
+    display: none;
+  }
+  .mobilebar {
+    display: flex;
+  }
+  body {
+    padding-bottom: var(--s-9);
+  } /* 72px — clears the ~61px fixed mobile outcome bar (Task-2 overlap fix) */
+}
+@media (max-width: 880px) {
+  .scrolly {
+    grid-template-columns: 1fr;
+  }
+  .scrolly .stage {
+    position: static;
+  }
+  .scrolly .steps {
+    gap: var(--s-2);
+    padding: var(--s-2) 0;
+  }
+  .callout {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 620px) {
+  .dpair,
+  .insights,
+  .outcomes {
+    grid-template-columns: 1fr;
+  }
+  .pivot {
+    flex-direction: column;
+    gap: var(--s-1025);
+  }
+  .decision .dhead {
+    flex-wrap: wrap;
+  }
+  .decision .dhead .dtitle,
+  .decision .dhead > h3 {
+    flex: 1 1 220px;
+  }
+  .section {
+    padding: var(--s-5) 0;
+  }
+  /* on small screens the badge drops below the image (static) so it never crowds a
+     short hero image; keeps the darkened-glass fill + white text for AA parity */
+  .result-badge {
+    position: static;
+    margin-top: var(--s-2);
+    gap: var(--s-2) var(--s-3);
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 560px) {
+  .topbar {
+    flex-wrap: wrap;
+    gap: var(--s-1);
+    padding: var(--s-1025) var(--s-2);
+  }
+  .topbar nav {
+    margin-left: 0;
+    flex-wrap: wrap;
+    gap: 2px;
+  }
+  .topbar nav a {
+    padding: 7px 10px;
+  }
+  .wrap {
+    padding-inline: clamp(16px, 5vw, 24px);
+  }
+  .body-grid {
+    padding-inline: clamp(16px, 5vw, 24px);
+  }
+  .endnav,
+  footer.site {
+    padding-inline: clamp(16px, 5vw, 24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dcol.shipped .wipe {
+    display: none;
+  }
+  .callout {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- image slots: fixed aspect ratios so a real image drops in with no layout shift.
+   Put an <img> inside the slot; it fills the frame. Specificity (0,3,0) beats the
+   per-context min-heights above. ---- */
+.hero .imgslot.r-32-15,
+.story .imgslot.r-32-15 {
+  aspect-ratio: 32 / 15;
+  min-height: 0;
+}
+.story .imgslot.r-16-9 {
+  aspect-ratio: 16 / 9;
+  min-height: 0;
+}
+.story .imgslot.r-2-1 {
+  aspect-ratio: 2 / 1;
+  min-height: 0;
+}
+.story .imgslot.r-4-5 {
+  aspect-ratio: 4 / 5;
+  min-height: 0;
+}
+.imgslot > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: inherit;
+}
+@media (max-width: 880px) {
+  .story .imgslot.r-4-5 {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---- the 60-second version: dark editorial panel ---- */
+.sixty {
+  position: relative;
+  overflow: hidden;
+  background: var(--headline-brown);
+  color: var(--bg);
+  border-radius: var(--r-card);
+  padding: var(--s-6) var(--s-5) var(--s-5);
+  margin-bottom: var(--s-2);
+}
+.sixty::after {
+  content: "60";
+  position: absolute;
+  right: -0.06em;
+  top: -0.2em;
+  font: 900 clamp(9rem, 22vw, 15rem) / 1 var(--f-display);
+  color: rgba(246, 243, 237, 0.06);
+  pointer-events: none;
+}
+.sixty-k {
+  position: relative;
+  z-index: 1;
+  font: 400 12px/1 var(--f-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cararra);
+  margin: 0 0 var(--s-3);
+}
+.sixty-line {
+  position: relative;
+  z-index: 1;
+  font: 900 clamp(1.9rem, 4.2vw, 2.9rem) / var(--lh-display) var(--f-display);
+  color: var(--bg);
+  max-width: 20ch;
+  margin: 0 0 var(--s-5);
+  text-wrap: balance;
+}
+.sixty-line em {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--cararra);
+}
+.sixty-steps {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sixty-steps li {
+  border-top: 1px solid rgba(246, 243, 237, 0.28);
+  padding-top: var(--s-2);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.sixty-steps li:nth-child(2) {
+  transition-delay: 0.12s;
+}
+.sixty-steps li:nth-child(3) {
+  transition-delay: 0.24s;
+}
+.sixty.pre .sixty-steps li {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.sixty .sn {
+  display: block;
+  font: italic 400 2rem / 1 var(--f-display);
+  color: var(--cararra);
+  margin-bottom: var(--s-1);
+}
+.sixty h3 {
+  font: 400 12px/1 var(--f-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cararra);
+  margin: 0 0 var(--s-1);
+}
+.sixty-steps p {
+  font-size: 15px;
+  line-height: var(--lh-small);
+  color: var(--bg);
+  margin: 0;
+}
+@media (max-width: 620px) {
+  .sixty::after {
+    display: none;
+  }
+  .sixty {
+    padding: var(--s-5) var(--s-3) var(--s-4);
+  }
+  .sixty-steps {
+    grid-template-columns: 1fr;
+    gap: var(--s-3);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sixty.pre .sixty-steps li {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- state map: the card's state to label rules, shown as a small dark token table ---- */
+.decision > .statemap {
+  background: #232320;
+  color: #efece4;
+  padding: var(--s-3) var(--card-pad);
+}
+.statemap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.statemap caption {
+  caption-side: top;
+  text-align: left;
+  font: 400 12px/var(--lh-label) var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b4afa4;
+  padding-bottom: var(--s-2);
+}
+.statemap th {
+  text-align: left;
+  font: 400 12px/var(--lh-label) var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b4afa4;
+  padding: var(--s-1) 0;
+  border-bottom: 1px solid rgba(239, 236, 228, 0.22);
+}
+.statemap td {
+  font: 400 14px/var(--lh-small) var(--f-mono);
+  padding: var(--s-1) 0;
+  border-bottom: 1px solid rgba(239, 236, 228, 0.1);
+}
+.statemap td + td,
+.statemap th + th {
+  color: #d8c7a0;
+  padding-left: var(--s-2);
+}
+.statemap tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* ---- how it was built: tool / use / change as a plain labeled list ---- */
+.buildlist {
+  margin: var(--stack-block) 0 0;
+  display: grid;
+  gap: var(--s-2);
+  max-width: 68ch;
+}
+.buildlist > div {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: var(--s-2);
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--tag-divider);
+}
+.buildlist dt {
+  font: 400 12px/var(--lh-label) var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--flint);
+  padding-top: 3px;
+}
+.buildlist dd {
+  margin: 0;
+  font-size: 15px;
+  line-height: var(--lh-small);
+  color: var(--ink);
+}
+@media (max-width: 620px) {
+  .buildlist > div {
+    grid-template-columns: 1fr;
+    gap: var(--s-05);
+  }
+}

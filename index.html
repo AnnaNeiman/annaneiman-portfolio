@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anna Neiman — Senior Product Designer who designs and builds, Denver CO</title>
+    <meta
+      name="description"
+      content="Anna Neiman is a Senior Product Designer in Denver who designs and builds — product UI, component systems, and the accessible front-end that ships them. 5+ years; open to senior product-design and design-engineering roles."
+    />
+    <meta
+      property="og:title"
+      content="Anna Neiman — Senior Product Designer who designs and builds"
+    />
+    <meta
+      property="og:description"
+      content="Product UI, component systems, and the accessible front-end that makes them real. Open to senior roles."
+    />
+    <meta name="theme-color" content="#F6F3ED" />
+
+    <!-- Inline SVG favicon (data URI) — zero asset, zero extra request, no 404. -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23F6F3ED'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Georgia,serif'%20font-size='22'%20font-weight='900'%20text-anchor='middle'%20fill='%232E1A0F'%3EA%3C/text%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Space+Mono&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Space+Mono&display=swap"
+    />
+
+    <!-- Canonical tokens + base (single source of truth), then this page's component CSS. -->
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/index.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav">
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#hero" aria-current="true">Home</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="page">
+      <!-- ============ HERO (§3.2) ============ -->
+      <section id="hero" class="hero" aria-labelledby="hero-name">
+        <div class="hero-top">
+          <!-- Hero Card — three Figma groups (Name&Title / Introduction / CTA Buttons),
+           separated by the card's own 40px gap; sub-gaps live on each group. -->
+          <div class="hero-card card">
+            <!-- Name & Title group (Figma #54:1366, gap 8) -->
+            <div class="hero-text">
+              <p class="eyebrow">Senior Product Designer · Denver, CO</p>
+              <h1 class="hero-name" id="hero-name">Anna Neiman</h1>
+            </div>
+
+            <!-- Introduction group (Figma #54:1369, gap 24) -->
+            <div class="introduction">
+              <p class="greeting">Hi! I'm Anna… Who are you?</p>
+
+              <div class="switcher">
+                <div class="switcher-tabs" role="tablist" aria-label="Choose how to read my bio">
+                  <button
+                    type="button"
+                    role="tab"
+                    id="tab-recruiter"
+                    aria-selected="true"
+                    aria-controls="bio-recruiter"
+                    tabindex="0"
+                  >
+                    Recruiter
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    id="tab-lead"
+                    aria-selected="false"
+                    aria-controls="bio-lead"
+                    tabindex="-1"
+                  >
+                    Design Lead
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    id="tab-engineer"
+                    aria-selected="false"
+                    aria-controls="bio-engineer"
+                    tabindex="-1"
+                  >
+                    Engineer
+                  </button>
+                </div>
+                <div class="switcher-panels">
+                  <div
+                    class="bio"
+                    role="tabpanel"
+                    id="bio-recruiter"
+                    aria-labelledby="tab-recruiter"
+                    tabindex="0"
+                  >
+                    Senior Product Designer who designs <em class="serif-italic">and</em> builds —
+                    5+ years shipping product UI, component systems, and the front-end that makes
+                    them real. I turn messy problems into flows that move the business number, and
+                    I'm fluent with the AI tools that speed the work without cutting the judgment.
+                    Open to senior product-design and design-engineering roles.
+                  </div>
+                  <div
+                    class="bio"
+                    role="tabpanel"
+                    id="bio-lead"
+                    aria-labelledby="tab-lead"
+                    tabindex="0"
+                  >
+                    I own interaction and systems end to end: state-driven component architecture,
+                    responsive layout across every breakpoint, and the design-system home a team can
+                    build on. I pair creative instinct with data-driven rationale, bring
+                    accessibility in as a baseline, and make trade-offs explicit so the team can
+                    move fast and still ship the right thing.
+                  </div>
+                  <div
+                    class="bio"
+                    role="tabpanel"
+                    id="bio-engineer"
+                    aria-labelledby="tab-engineer"
+                    tabindex="0"
+                  >
+                    I come from a dev background, so my designs land as real, accessible front-end —
+                    semantic HTML, design tokens, WCAG AA, and clean handoff. This whole site is
+                    hand-built, no framework, as the proof. I use Figma, React, Tailwind, and AI
+                    tooling (Kiro, MCPs) on the job, and I know where the model helps and where
+                    human judgment has to own the call.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Buttons group (Figma #55:4025, gap 16) -->
+            <div class="hero-ctas">
+              <a class="btn btn-solid" href="resume.pdf" download>Resume</a>
+              <a class="btn btn-outline" href="#contact">Get in touch</a>
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="hero-right">
+            <div class="hobby-row">
+              <div class="glass">
+                <span class="arrow" aria-hidden="true">↗</span>
+                <span class="label">board games</span>
+                <p class="desc">
+                  Because even introverts have friends they need to entertain on a Saturday
+                  afternoon.
+                </p>
+              </div>
+              <div class="glass">
+                <span class="arrow" aria-hidden="true">↗</span>
+                <span class="label">this old house</span>
+                <p class="desc">
+                  I can install new light fixtures in under seven minutes. I counted.
+                </p>
+              </div>
+            </div>
+            <a
+              class="feature large"
+              href="marketplace.html"
+              aria-label="Case study: Spectrum App Store — a state-driven card system scaled to new providers with no design rework"
+            >
+              <span
+                class="placeholder"
+                role="img"
+                aria-label="Project visual placeholder — the live marketplace home with provider cards in their shipped states"
+              ></span>
+              <span class="overlay">
+                <span class="cat">Product design · Design systems</span>
+                <span class="pt-group">
+                  <span class="ptitle">Spectrum App Store — streaming marketplace, 0→1</span>
+                  <span class="pout"
+                    >A state-driven card system that scaled to new providers with no design
+                    rework.</span
+                  >
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero bottom row -->
+        <div class="hero-bottom">
+          <a
+            class="feature wide"
+            href="case-2.html"
+            aria-label="Case study 2 (placeholder)"
+          >
+            <span
+              class="placeholder"
+              role="img"
+              aria-label="Project visual placeholder — the rebuilt activation flow, each step and state"
+            ></span>
+            <span class="overlay">
+              <span class="cat">Placeholder</span>
+              <span class="pt-group">
+                <span class="ptitle">Case study 2</span>
+                <span class="pout">Placeholder — lorem ipsum.</span>
+              </span>
+            </span>
+          </a>
+          <a
+            class="feature medium"
+            href="case-3.html"
+            aria-label="Case study 3 (placeholder)"
+          >
+            <span
+              class="placeholder"
+              role="img"
+              aria-label="Project visual placeholder — the component library and token set across its states"
+            ></span>
+            <span class="overlay">
+              <span class="cat">Placeholder</span>
+              <span class="pt-group">
+                <span class="ptitle">Case study 3</span>
+                <span class="pout">Placeholder — lorem ipsum.</span>
+              </span>
+            </span>
+          </a>
+          <div class="funfacts">
+            <div class="glass">
+              <span class="arrow" aria-hidden="true">↗</span>
+              <span class="label">60 books read in 2025</span>
+              <p class="desc">Because listening to books at 2.5x speed still counts as reading.</p>
+            </div>
+            <div class="glass">
+              <span class="arrow" aria-hidden="true">↗</span>
+              <span class="label">the crew</span>
+              <p class="desc">
+                Two cats and a dog. And we don't even have the pandemic as an excuse.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ WORK (§3.3) ============ -->
+      <section id="work" class="work" aria-labelledby="work-h">
+        <h2 class="kicker" id="work-h">all work</h2>
+        <div class="section-head">
+          <span class="rule" aria-hidden="true"></span>
+          <span class="count">5 case studies</span>
+        </div>
+        <p class="tmpl-note">Metrics shown are illustrative placeholders for this template.</p>
+
+        <div class="work-list">
+          <a class="work-row" href="marketplace.html">
+            <span class="work-index">01.</span>
+            <span class="work-main">
+              <span class="work-title">Spectrum App Store — streaming marketplace, 0→1</span>
+              <span class="work-desc"
+                >Designed and shipped a 0→1 entertainment marketplace whose state-driven card system
+                scaled to new providers with no design rework.</span
+              >
+              <span class="work-tags"
+                ><span class="tag">Product design</span><span class="tag">Design systems</span
+                ><span class="tag">0→1</span></span
+              >
+            </span>
+            <span class="work-metric"
+              ><span class="num" data-count="37" data-suffix="%" data-prefix="+">+37%</span
+              ><span class="lab">A la carte upgrades</span></span
+            >
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="work-row" href="case-2.html">
+            <span class="work-index">02.</span>
+            <span class="work-main">
+              <span class="work-title">Case study 2</span>
+              <span class="work-desc"
+                >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placeholder case study —
+                real content to come.</span
+              >
+              <span class="work-tags"
+                ><span class="tag">Placeholder</span><span class="tag">Lorem</span
+                ><span class="tag">Ipsum</span></span
+              >
+            </span>
+            <span class="work-metric"
+              ><span class="num">+XX%</span><span class="lab">Placeholder</span></span
+            >
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="work-row" href="case-3.html">
+            <span class="work-index">03.</span>
+            <span class="work-main">
+              <span class="work-title">Case study 3</span>
+              <span class="work-desc"
+                >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placeholder case study —
+                real content to come.</span
+              >
+              <span class="work-tags"
+                ><span class="tag">Placeholder</span><span class="tag">Lorem</span
+                ><span class="tag">Ipsum</span></span
+              >
+            </span>
+            <span class="work-metric"
+              ><span class="num">+XX%</span><span class="lab">Placeholder</span></span
+            >
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="work-row" href="case-4.html">
+            <span class="work-index">04.</span>
+            <span class="work-main">
+              <span class="work-title">Case study 4</span>
+              <span class="work-desc"
+                >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placeholder case study —
+                real content to come.</span
+              >
+              <span class="work-tags"
+                ><span class="tag">Placeholder</span><span class="tag">Lorem</span
+                ><span class="tag">Ipsum</span></span
+              >
+            </span>
+            <span class="work-metric"
+              ><span class="num">+XX%</span><span class="lab">Placeholder</span></span
+            >
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="work-row" href="case-5.html">
+            <span class="work-index">05.</span>
+            <span class="work-main">
+              <span class="work-title">Case study 5</span>
+              <span class="work-desc"
+                >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placeholder case study —
+                real content to come.</span
+              >
+              <span class="work-tags"
+                ><span class="tag">Placeholder</span><span class="tag">Lorem</span
+                ><span class="tag">Ipsum</span></span
+              >
+            </span>
+            <span class="work-metric"
+              ><span class="num">+XX%</span><span class="lab">Placeholder</span></span
+            >
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ============ ABOUT (§3.4) — two-column rail (Figma node 54:1561 "About Content": row, gap 32) ============ -->
+      <section id="about" class="about" aria-labelledby="about-h">
+        <div class="about-head">
+          <span class="kicker">about me</span>
+          <div class="section-head"><span class="rule" aria-hidden="true"></span></div>
+        </div>
+        <div class="about-details">
+          <h2 id="about-h">Let's build something.</h2>
+          <div class="about-bio">
+            <p>
+              Senior product designer with 5+ years pairing creative instinct with data-driven
+              rationale. Currently at Spectrum.
+            </p>
+            <p>
+              Previously Optum, Spitfiregirl Designs, and freelance — each one taught me something
+              different about what "good" actually means in practice.
+            </p>
+            <p>
+              I care about accessibility as a baseline, not a checklist. And I think empathy is the
+              most underrated skill in the room.
+            </p>
+          </div>
+          <div class="info-cards">
+            <div class="info-card">
+              <span class="il">Current @</span><span class="iv">Spectrum</span>
+            </div>
+            <div class="info-card">
+              <span class="il">Located in</span><span class="iv">denver, co</span>
+            </div>
+            <div class="info-card">
+              <span class="il">Open to</span><span class="iv">Senior roles</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ BOOKSHELF (§3.5) ============ -->
+      <section class="bookshelf" aria-labelledby="shelf-h">
+        <div class="shelf-wrap">
+          <span class="kicker">bookshelf</span>
+          <div class="section-head"><span class="rule" aria-hidden="true"></span></div>
+          <h2 class="kicker visually-hidden" id="shelf-h">Bookshelf</h2>
+          <div
+            class="shelf-rail"
+            tabindex="0"
+            role="group"
+            aria-label="Book spines — scroll horizontally"
+          >
+            <a
+              class="spine"
+              style="--spine-h: 138px"
+              href="https://www.goodreads.com/user/show/36606380"
+              rel="noopener"
+              aria-label="The Design of Everyday Things — view on Goodreads"
+              ><span>The Design of Everyday Things</span></a
+            >
+            <a
+              class="spine"
+              style="--spine-h: 122px"
+              href="https://www.goodreads.com/user/show/36606380"
+              rel="noopener"
+              aria-label="Hooked — view on Goodreads"
+              ><span>Hooked</span></a
+            >
+            <a
+              class="spine"
+              style="--spine-h: 160px"
+              href="https://www.goodreads.com/user/show/36606380"
+              rel="noopener"
+              aria-label="Lean UX — view on Goodreads"
+              ><span>Lean UX</span></a
+            >
+            <a
+              class="spine"
+              style="--spine-h: 130px"
+              href="https://www.goodreads.com/user/show/36606380"
+              rel="noopener"
+              aria-label="Don't Make Me Think — view on Goodreads"
+              ><span>Don't Make Me Think</span></a
+            >
+            <a
+              class="spine"
+              style="--spine-h: 110px"
+              href="https://www.goodreads.com/user/show/36606380"
+              rel="noopener"
+              aria-label="The Pocket Universal Principles — view on Goodreads"
+              ><span>Pocket Universal Principles</span></a
+            >
+            <a
+              class="spine"
+              style="--spine-h: 146px"
+              href="https://www.goodreads.com/user/show/36606380"
+              rel="noopener"
+              aria-label="Atomic Design — view on Goodreads"
+              ><span>Atomic Design</span></a
+            >
+            <a
+              class="spine"
+              style="--spine-h: 152px"
+              href="https://www.goodreads.com/user/show/36606380"
+              rel="noopener"
+              aria-label="A Project Guide to UX Design — view on Goodreads"
+              ><span>A Project Guide to UX Design</span></a
+            >
+            <a
+              class="spine see-more"
+              style="--spine-h: 96px"
+              href="https://www.goodreads.com/user/show/36606380"
+              rel="noopener"
+              aria-label="See more books on Goodreads"
+              ><span>See more →</span></a
+            >
+          </div>
+        </div>
+        <div class="reading-stats">
+          <h2>I read. Like a lot.</h2>
+          <p>
+            I read 60 books in 2025 but my goal is to read 80 books this year. Curious what i'm
+            currently reading?
+          </p>
+          <a
+            class="btn btn-outline"
+            href="https://www.goodreads.com/user/show/36606380"
+            rel="noopener"
+            >Check out my shelf</a
+          >
+        </div>
+      </section>
+
+      <!-- ============ CONTACT (§3.6) ============ -->
+      <section id="contact" class="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h">Let's talk design, code or books.</h2>
+        <div class="hero-ctas">
+          <a class="btn btn-solid" href="resume.pdf" download>Resume</a>
+          <a class="btn btn-outline" href="mailto:aneiman.design@gmail.com">Get in touch</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="email" href="mailto:aneiman.design@gmail.com">aneiman.design@gmail.com</a>
+      <p class="tagline">Designed with obsessive care.</p>
+      <div class="socials">
+        <a href="https://www.linkedin.com/" rel="me noopener">LinkedIn</a>
+        <a href="https://github.com/" rel="me noopener">GitHub</a>
+        <span aria-disabled="true">Read.cv <span class="addlink">(add link)</span></span>
+        <span aria-disabled="true">Are.na <span class="addlink">(add link)</span></span>
+      </div>
+      <p class="copyright">© <span id="year">2026</span> Anna Neiman</p>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var hasIO = "IntersectionObserver" in window;
+
+        /* current year */
+        var y = document.getElementById("year");
+        if (y) y.textContent = new Date().getFullYear();
+
+        /* nav shadow on scroll */
+        var nav = document.querySelector(".nav");
+        function navShadow() {
+          if (nav) nav.classList.toggle("scrolled", window.scrollY > 8);
+        }
+        document.addEventListener("scroll", navShadow, { passive: true });
+        navShadow();
+
+        /* ---- role switcher tablist (full keyboard model) ---- */
+        var tablist = document.querySelector('[role="tablist"]');
+        if (tablist) {
+          var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+          var panels = tabs.map(function (t) {
+            return document.getElementById(t.getAttribute("aria-controls"));
+          });
+
+          function select(i, focusTab) {
+            tabs.forEach(function (t, j) {
+              var on = j === i;
+              t.setAttribute("aria-selected", on ? "true" : "false");
+              t.tabIndex = on ? 0 : -1;
+              if (panels[j]) {
+                if (on) {
+                  panels[j].hidden = false;
+                  if (!reduce) {
+                    panels[j].classList.remove("fade");
+                    void panels[j].offsetWidth;
+                    panels[j].classList.add("fade");
+                  }
+                } else {
+                  panels[j].hidden = true;
+                }
+              }
+            });
+            if (focusTab) tabs[i].focus();
+          }
+          /* collapse to single panel on load (JS-on state) */
+          select(0, false);
+
+          tabs.forEach(function (tab, i) {
+            tab.addEventListener("click", function () {
+              select(i, false);
+            });
+            tab.addEventListener("keydown", function (e) {
+              var n = tabs.length,
+                next = null;
+              if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (i + 1) % n;
+              else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (i - 1 + n) % n;
+              else if (e.key === "Home") next = 0;
+              else if (e.key === "End") next = n - 1;
+              if (next !== null) {
+                e.preventDefault();
+                select(next, true);
+              }
+            });
+          });
+        }
+
+        /* ---- count-up (shared contract: data-prefix + value + data-suffix) ---- */
+        function countUp(el) {
+          var target = parseFloat(el.dataset.count);
+          var pre = el.dataset.prefix || "",
+            suf = el.dataset.suffix || "";
+          var dec = target % 1 !== 0 ? 1 : 0;
+          if (reduce) {
+            el.textContent = pre + target.toFixed(dec) + suf;
+            return;
+          }
+          var start = null,
+            dur = 1100;
+          function step(t) {
+            if (!start) start = t;
+            var p = Math.min((t - start) / dur, 1),
+              e = 1 - Math.pow(1 - p, 3);
+            el.textContent = pre + (target * e).toFixed(dec) + suf;
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+        var counters = document.querySelectorAll("[data-count]");
+        if (hasIO && !reduce) {
+          var co = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  countUp(en.target);
+                  co.unobserve(en.target);
+                }
+              });
+            },
+            { threshold: 0.6 }
+          );
+          counters.forEach(function (c) {
+            co.observe(c);
+          });
+        } else {
+          counters.forEach(countUp); /* reduced-motion / no-IO → final values */
+        }
+
+        /* ---- nav scrollspy: exactly one aria-current="true" ---- */
+        var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+        var targets = navLinks.map(function (a) {
+          return document.querySelector(a.getAttribute("href"));
+        });
+        if (hasIO) {
+          function setCurrent(i) {
+            navLinks.forEach(function (l, j) {
+              if (j === i) l.setAttribute("aria-current", "true");
+              else l.removeAttribute("aria-current");
+            });
+          }
+          var so = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  var i = targets.indexOf(en.target);
+                  if (i > -1) setCurrent(i);
+                }
+              });
+            },
+            { rootMargin: "-45% 0px -50% 0px" }
+          );
+          targets.forEach(function (t) {
+            if (t) so.observe(t);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

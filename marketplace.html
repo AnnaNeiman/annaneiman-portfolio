@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      One card system let the Spectrum App Store add providers with zero design rework | Anna
+      Neiman, Senior Product Designer
+    </title>
+    <meta
+      name="description"
+      content="Co-led with a Senior Content Designer: how one state-driven card system took a streaming marketplace from concept to launch in 2.5 weeks and let it add providers without design rework."
+    />
+    <meta
+      property="og:title"
+      content="One card system, zero design rework: the Spectrum App Store, by Anna Neiman"
+    />
+    <meta
+      property="og:description"
+      content="A streaming marketplace built in 2.5 weeks that kept growing without a designer touching every new provider."
+    />
+    <meta name="theme-color" content="#F6F3ED" />
+
+    <!-- Inline SVG favicon (data URI): zero asset, zero extra request, no 404. -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23F6F3ED'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Georgia,serif'%20font-size='22'%20font-weight='900'%20text-anchor='middle'%20fill='%232E1A0F'%3EA%3C/text%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Space+Mono&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Space+Mono&display=swap"
+    />
+
+    <!-- Canonical tokens + base (single source of truth), then this page's component CSS. -->
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/case-study.css" />
+  </head>
+  <body class="mp">
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back" href="index.html#work">← Back to work</a>
+      <nav aria-label="Primary">
+        <a href="index.html#hero">Home</a>
+        <a href="index.html#work" aria-current="page">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="cs-title">
+      <div class="wrap">
+        <div class="hero-head">
+          <div class="hero-meta">
+            <span class="chip">Senior Product Designer, co-led</span>
+            <span class="chip">0 to 1</span>
+            <span class="chip">2.5 weeks, 2025</span>
+          </div>
+          <h1 id="cs-title">
+            One card system let the Spectrum App Store add providers with zero design rework.
+          </h1>
+          <p class="hook">
+            A streaming marketplace had 2.5 weeks to launch and no designer for every new provider.
+            My content-design partner and I designed all of it, from the concept to the system
+            behind it, so it could grow without us.
+          </p>
+        </div>
+        <div class="hero-figure">
+          <div
+            class="imgslot r-32-15"
+            role="img"
+            data-asset="hero-marketplace-home.png"
+            aria-label="The Spectrum App Store home with its hero carousel and first swimlanes."
+          ><span class="mp-chrome" aria-hidden="true"></span></div>
+          <div class="result-badge">
+            <div class="stat">
+              <span class="num" data-count="37" data-prefix="+" data-suffix="%">+37%</span
+              ><span class="lab">A la carte upgrades</span>
+            </div>
+            <div class="stat">
+              <span class="num" data-count="15" data-prefix="+" data-suffix="%">+15%</span
+              ><span class="lab">Click-through rate</span>
+            </div>
+            <div class="stat">
+              <span class="num" data-count="18" data-prefix="+" data-suffix="%">+18%</span
+              ><span class="lab">TV-plan upgrades</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BODY GRID ============ -->
+    <div class="body-grid">
+      <!-- RAIL (source order: aside before main) -->
+      <aside class="rail" aria-label="Case summary and navigation">
+        <div class="summary-card">
+          <h2>At a glance</h2>
+          <div class="sfield">
+            <span class="k">Problem</span
+            ><span class="v">Most customers never discovered the streaming apps in their TV plan.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Constraint</span
+            ><span class="v">2.5 weeks, not the 10 we asked for.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Role</span
+            ><span class="v">Senior Product Designer, co-leading with a Senior Content Designer.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Team</span
+            ><span class="v">Two co-leads, engineering, research, and VP-level reviewers.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Timeline</span
+            ><span class="v">Concept to MVP in 2.5 weeks, 2025.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Tools</span
+            ><span class="v">Figma, Kite Design System, Jira, Confluence.</span>
+          </div>
+          <div class="sfield">
+            <span class="k">Outcomes</span
+            ><span class="v">Activation, upgrades, and click-through all rose.</span>
+          </div>
+        </div>
+
+        <nav class="spinenav" aria-label="Sections">
+          <h2>In this case</h2>
+          <ol>
+            <li><a href="#s-context" class="active">Context</a></li>
+            <li><a href="#s-research">Research</a></li>
+            <li><a href="#s-decisions">Key decisions</a></li>
+            <li><a href="#s-build">Build &amp; validate</a></li>
+            <li><a href="#s-final">Final design</a></li>
+            <li><a href="#s-outcomes">Outcomes</a></li>
+            <li><a href="#s-reflection">Reflection</a></li>
+            <li><a href="#s-howbuilt">How it was built</a></li>
+          </ol>
+          <p class="jump"><a href="#s-outcomes">↓ Jump to outcomes</a></p>
+          <p class="readtime">⏱ 4 min read</p>
+        </nav>
+      </aside>
+
+      <!-- STORY COLUMN -->
+      <main id="main" class="story">
+        <section class="sixty" aria-labelledby="sixty-k">
+          <p class="sixty-k" id="sixty-k">The 60-second version</p>
+          <p class="sixty-line">The concept, the screens, <em>and the system that outlasted us.</em></p>
+          <ol class="sixty-steps">
+            <li>
+              <span class="sn" aria-hidden="true">1</span>
+              <h3>The problem</h3>
+              <p>Most customers never found the streaming apps in their TV plan. We had 2.5 weeks to change that.</p>
+            </li>
+            <li>
+              <span class="sn" aria-hidden="true">2</span>
+              <h3>The move</h3>
+              <p>One card that adapts to each customer's plan, with plain labels like Activate and Upgrade.</p>
+            </li>
+            <li>
+              <span class="sn" aria-hidden="true">3</span>
+              <h3>The result</h3>
+              <p>Upgrades up 37%. Six providers launched with no design rework.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section id="s-context" class="section">
+          <p class="kicker">01 · Context</p>
+          <h2 class="claim">The problem was never the first screen. It was every screen after launch.</h2>
+          <p class="lead">
+            Spectrum TV plans included streaming apps like ESPN, Peacock, and Paramount+, and most
+            customers never found them. Competitors had polished marketplaces. We had the
+            partnerships but no single place to show them.
+          </p>
+          <p>
+            We asked for 10 weeks to build one for a CEO shareholder unveil and got 2.5. The cards
+            still had to put entertainment first, meet accessibility standards at strict character
+            limits, and work on every screen size. With no designer available for each new
+            provider, the system had to scale on its own.
+          </p>
+        </section>
+
+        <section id="s-research" class="section">
+          <p class="kicker">02 · Research</p>
+          <h2 class="claim">Customers chose by the show and feared a hidden charge.</h2>
+          <div class="insights">
+            <div class="insight">
+              <div class="n">01</div>
+              <p>
+                Customers pick by <em class="hl">what they want to watch</em>, not which app to
+                pay for. Art leads the card and state language comes second.
+              </p>
+            </div>
+            <div class="insight">
+              <div class="n">02</div>
+              <p>
+                In an Aug 2025 test with 8 customers, TV customers read “Unlock” as an extra
+                charge. That pushed us toward “Activate.”
+              </p>
+            </div>
+            <div class="insight">
+              <div class="n">03</div>
+              <p>
+                Accessibility set a 32px minimum logo size, so we chose which provider logos to
+                show.
+              </p>
+            </div>
+          </div>
+          <div
+            class="imgslot r-2-1 research"
+            role="img"
+            data-asset="card-anatomy-diagram.png"
+            aria-label="Card anatomy: show art, app logo, title, and state label, with character limit zones marked."
+          ><span class="mp-chrome" aria-hidden="true"></span></div>
+          
+        </section>
+
+        <section id="s-decisions" class="section">
+          <p class="kicker">03 · Key decisions</p>
+          <h2 class="claim">Every decision names what lost and why.</h2>
+          
+
+          <div class="decision" id="d1">
+            <div class="dhead">
+              <div class="dtitle"><span class="dn">Decision 1</span><h3>Chose “Activate” over the exec-favored “Unlock”</h3></div>
+              <a class="anchor" href="#d1" title="Copy link to this decision">Link</a>
+            </div>
+            <div class="dpair">
+              <div class="dcol rejected">
+                <span class="dtag"><span class="mark" aria-hidden="true">✗</span>Rejected</span>
+                <div
+                  class="imgslot r-16-9"
+                  role="img"
+                  data-asset="cta-unlock-rejected.png"
+                  aria-label="An early prototype card with the “Unlock” label."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it lost</span><p class="dpull"><span>Read as a hidden fee.</span></p><p class="dwhy">Customers took “Unlock” as an extra charge, and it was hard to translate into Spanish.</p></div>
+              </div>
+              <div class="dcol shipped">
+                <span class="dtag"><span class="mark" aria-hidden="true">✓</span>Shipped</span>
+                <div
+                  class="imgslot r-16-9"
+                  role="img"
+                  data-asset="cta-activate-shipped.png"
+                  aria-label="The same card with the shipped “Activate” label."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it won</span><p class="dpull"><span>Says exactly what to do.</span></p><p class="dwhy">“Activate” translates cleanly and reads clearly with a screen reader.</p></div>
+                <span class="wipe" aria-hidden="true"></span>
+              </div>
+            </div>
+            <p class="tradeoff">
+              <b>The trade-off:</b> we went against what execs wanted, so the case had to hold up.
+              My content-design partner built it with competitive analysis and usability evidence.
+              I built the UI system that carries “Activate” and the full state vocabulary across
+              every card.
+            </p>
+          </div>
+
+          <div class="pivot">
+            <div class="ic" aria-hidden="true">↻</div>
+            <div>
+              <p class="k">Where we changed direction</p>
+              <h4>We spent a day polishing the inherited card, then threw it out.</h4>
+              <p>
+                The old cards crammed dates, upgrade buttons, titles, branding, and promos
+                together. A hierarchy pass didn't fix it, and it still broke on mobile.
+              </p>
+              <p>
+                So we cut further than felt comfortable: title, date, logo, state. The show art
+                became the hero, and that shipped.
+              </p>
+            </div>
+          </div>
+
+          <div class="decision" id="d2">
+            <div class="dhead">
+              <div class="dtitle"><span class="dn">Decision 2</span><h3>Built one component with 10+ states, not custom cards per provider</h3></div>
+              <a class="anchor" href="#d2" title="Copy link to this decision">Link</a>
+            </div>
+            <div class="dpair">
+              <div class="dcol rejected">
+                <span class="dtag"><span class="mark" aria-hidden="true">✗</span>Rejected</span>
+                <div
+                  class="imgslot r-16-9"
+                  role="img"
+                  data-asset="card-round1-cluttered.png"
+                  aria-label="The crowded first-round card with dates, buttons, title, logo, and promo all competing."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it lost</span><p class="dpull"><span>Too much on one card.</span></p><p class="dwhy">Dates, buttons, titles, and promos competed, and it broke on mobile.</p></div>
+              </div>
+              <div class="dcol shipped">
+                <span class="dtag"><span class="mark" aria-hidden="true">✓</span>Shipped</span>
+                <div
+                  class="imgslot r-16-9"
+                  role="img"
+                  data-asset="card-states-grid.png"
+                  aria-label="The shipped card across its 10+ states."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it won</span><p class="dpull"><span>One card, 10+ states.</span></p><p class="dwhy">It holds up at every screen size.</p></div>
+                <span class="wipe" aria-hidden="true"></span>
+              </div>
+            </div>
+            <div class="statemap">
+              <table>
+                <caption>
+                  One card, five of its 10+ states. The customer's state picks the variant.
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Customer state</th>
+                    <th scope="col">Card says</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Included, not yet activated</td>
+                    <td>Activate</td>
+                  </tr>
+                  <tr>
+                    <td>Activated</td>
+                    <td>Available to Watch</td>
+                  </tr>
+                  <tr>
+                    <td>Plan tier can improve</td>
+                    <td>Upgrade</td>
+                  </tr>
+                  <tr>
+                    <td>A la carte option</td>
+                    <td>Add</td>
+                  </tr>
+                  <tr>
+                    <td>New season available</td>
+                    <td>New Season</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="tradeoff">
+              <b>The trade-off:</b> custom cards launch faster, but each one needs its own
+              contrast and focus fixes, and they never quite match. One shared card took more work
+              up front and almost none per new provider. Contrast and focus were solved once.
+            </p>
+          </div>
+
+          <div class="decision" id="d3">
+            <div class="dhead">
+              <div class="dtitle"><span class="dn">Decision 3</span><h3>Added a gradient overlay and content safe zones to the hero</h3></div>
+              <a class="anchor" href="#d3" title="Copy link to this decision">Link</a>
+            </div>
+            <div class="dpair">
+              <div class="dcol rejected">
+                <span class="dtag"><span class="mark" aria-hidden="true">✗</span>Rejected</span>
+                <div
+                  class="imgslot r-32-15"
+                  role="img"
+                  data-asset="hero-nocontrast-rejected.png"
+                  aria-label="An early hero with text placed directly on rotating imagery."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it lost</span><p class="dpull"><span>Unreadable on busy art.</span></p><p class="dwhy">Text sat directly on rotating images.</p></div>
+              </div>
+              <div class="dcol shipped">
+                <span class="dtag"><span class="mark" aria-hidden="true">✓</span>Shipped</span>
+                <div
+                  class="imgslot r-32-15"
+                  role="img"
+                  data-asset="hero-gradient-shipped.png"
+                  aria-label="The shipped hero with a gradient overlay and text in the safe zone."
+                ><span class="mp-chrome" aria-hidden="true"></span></div>
+                <div class="dnote"><span class="dlabel">Why it won</span><p class="dpull"><span>Readable on any image.</span></p><p class="dwhy">A gradient keeps text at 4.5:1 contrast on any image.</p></div>
+                <span class="wipe" aria-hidden="true"></span>
+              </div>
+            </div>
+            <p class="tradeoff">
+              <b>The result:</b> I designed the overlay and templated it in the CMS, so marketing
+              can swap images without design. My content-design partner set the safe-zone rules:
+              character limits, headline to CTA order, and targeting. The exec got the look,
+              marketing got autonomy, customers got readable text, and accessibility approved it.
+            </p>
+          </div>
+        </section>
+
+        <section id="s-build" class="section">
+          <p class="kicker">04 · Build &amp; validate</p>
+          <h2 class="claim">A usability test found what the prototype got wrong.</h2>
+          <p>
+            We tested a working prototype with 8 customers in Aug 2025, a week before the launch
+            target. It is a small sample, so we read it as directional. Its main job was to shape
+            the fast-follows that came with launch.
+          </p>
+          <ul class="facts">
+            <li><b>Tasks:</b> describe the page, find items, then buy, upgrade, and watch.</li>
+            <li>
+              <b>Finding:</b> 3 of 8 failed the Watch task. “Ready to Watch” implied instant
+              playback but opened an app detail page with the button low on the screen.
+            </li>
+          </ul>
+          <div
+            class="imgslot r-2-1"
+            role="img"
+            data-asset="watch-task-app-detail.png"
+            aria-label="The app detail page customers reached after tapping Ready to Watch."
+          ><span class="mp-chrome" aria-hidden="true"></span></div>
+          <p class="caption">Where customers got stuck: the app detail page.</p>
+        </section>
+
+        <section id="s-final" class="section">
+          <p class="kicker">05 · Final design</p>
+          <h2 class="claim">The shipped UI, tied back to the decisions.</h2>
+          <div class="livelinks">
+            <a
+              class="livelink"
+              href="https://corporate.charter.com/newsroom/spectrum-introduces-the-spectrum-app-store"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span class="badge">Press</span>Launch announcement ↗</a
+            >
+          </div>
+          <div class="scrolly">
+            <div class="stage">
+              <div
+                class="imgslot r-4-5"
+                role="img"
+                data-asset="final-marketplace-scrolly.png"
+                aria-label="The final marketplace page from the hero through the swimlanes."
+              ><span class="mp-chrome" aria-hidden="true"></span></div>
+            </div>
+            <div class="steps">
+              <div class="callout active">
+                <span class="cn">1</span>
+                <p>One component, different <code>state</code> token. This is Decision 2.</p>
+              </div>
+              <div class="callout">
+                <span class="cn">2</span>
+                <p>Entertainment-first hierarchy inside the hero's safe zone. This is Decision 3.</p>
+              </div>
+              <div class="callout">
+                <span class="cn">3</span>
+                <p>
+                  Section order: Ready to Watch, Activate, Upgrade &amp; Add, Most Popular, New
+                  Seasons.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="s-outcomes" class="section">
+          <p class="kicker">06 · Outcomes</p>
+          <h2 class="claim">Upgrades rose 37%, and the system scaled without us.</h2>
+          <div class="mp-bleed">
+            <div class="outcomes">
+              <div class="ocard">
+                <span class="lens">Business</span>
+                <div class="onum" data-count="37" data-prefix="+" data-suffix="%">+37%</div>
+                <div class="olab">A la carte upgrades and purchases</div>
+                <div class="ometh">Entertainment-first discovery. Q4 2025 business review.</div>
+              </div>
+              <div class="ocard">
+                <span class="lens">Navigation</span>
+                <div class="onum" data-count="15" data-prefix="+" data-suffix="%">+15%</div>
+                <div class="olab">Click-through rate</div>
+                <div class="ometh">Entry-point placement. Q4 2025 business review.</div>
+              </div>
+              <div class="ocard">
+                <span class="lens">Scale</span>
+                <div class="onum" data-count="6" data-prefix="" data-suffix="+">6+</div>
+                <div class="olab">Providers added, 0 design interventions</div>
+                <div class="ometh">After launch, including Netflix.</div>
+              </div>
+            </div>
+            <p class="caption">Also: +10% streaming-app activation and +18% TV-plan upgrades.</p>
+          </div>
+          <p>
+            Awareness rose after launch, but confidence in understanding the offer fell. Unclear
+            activation steps stayed the top barrier.
+          </p>
+        </section>
+
+        <section id="s-reflection" class="section">
+          <p class="kicker">07 · Reflection</p>
+          <h2 class="claim">I'd bring research in first and launch in phases.</h2>
+          <ul class="facts">
+            <li>Bring research in on day one.</li>
+            <li>Test on mobile earlier.</li>
+            <li>Phase the launch: core swimlanes first, hero carousel and targeting after.</li>
+            <li>Test CTAs by segment, a lesson from my content-design partner.</li>
+          </ul>
+        </section>
+
+        <section id="s-howbuilt" class="section">
+          <p class="kicker">08 · How it was built</p>
+          <h2 class="claim">Built on Kite, specced for engineering.</h2>
+          <p>I treated the handoff as part of the design.</p>
+          <dl class="buildlist">
+            <div>
+              <dt>Tool</dt>
+              <dd>Figma, on the Kite Design System.</dd>
+            </div>
+            <div>
+              <dt>Use</dt>
+              <dd>
+                Specced every state for engineering: exact spacing, type, and color tokens, focus
+                states, ARIA notes, 44px touch targets, and breakpoint guides.
+              </dd>
+            </div>
+            <div>
+              <dt>Change</dt>
+              <dd>
+                Engineering built from the specs without waiting on design, and new providers
+                launched with no design help.
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </main>
+    </div>
+
+    <!-- ============ END NAV ============ -->
+    <nav class="endnav" aria-label="More case studies">
+      <a class="endcard" href="index.html#work"
+        ><span class="k">← Back</span>
+        <h3>All work</h3></a
+      >
+      <a class="endcard next" href="mailto:aneiman.design@gmail.com"
+        ><span class="k">Next →</span>
+        <h3>Let's talk</h3></a
+      >
+    </nav>
+
+    <footer class="site">
+      <p>
+        Let's talk: <a href="mailto:aneiman.design@gmail.com">aneiman.design@gmail.com</a> ·
+        <a href="index.html#work">Back to all work</a> · © <span id="year">2026</span> Anna Neiman
+      </p>
+    </footer>
+
+    <!-- mobile outcome bar (real labelled region, NOT aria-hidden) -->
+    <div class="mobilebar" role="region" aria-label="Case outcome">
+      <span class="m-out">+37%</span>
+      <span class="m-lab">a la carte<br />upgrades</span>
+      <a class="m-jump" href="#s-outcomes">Outcomes ↓</a>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var hasIO = "IntersectionObserver" in window;
+
+        /* current year */
+        var y = document.getElementById("year");
+        if (y) y.textContent = new Date().getFullYear();
+
+        /* reading-progress bar */
+        var bar = document.getElementById("progress");
+        function onScroll() {
+          var h = document.documentElement;
+          var max = h.scrollHeight - h.clientHeight;
+          if (bar) bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+        }
+        document.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        /* 60-second panel: steps ease in once, only when motion is allowed */
+        var sixty = document.querySelector(".sixty");
+        if (sixty && hasIO && !reduce) {
+          sixty.classList.add("pre");
+          var sxo = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  sixty.classList.remove("pre");
+                  sxo.unobserve(sixty);
+                }
+              });
+            },
+            { threshold: 0.3 }
+          );
+          sxo.observe(sixty);
+        }
+
+        /* count-up (shared contract: data-prefix + value + data-suffix) */
+        function countUp(el) {
+          var target = parseFloat(el.dataset.count);
+          var pre = el.dataset.prefix || "",
+            suf = el.dataset.suffix || "";
+          var dec = target % 1 !== 0 ? 1 : 0;
+          if (reduce) {
+            el.textContent = pre + target.toFixed(dec) + suf;
+            return;
+          }
+          var start = null,
+            dur = 1100;
+          function step(t) {
+            if (!start) start = t;
+            var p = Math.min((t - start) / dur, 1),
+              e = 1 - Math.pow(1 - p, 3);
+            el.textContent = pre + (target * e).toFixed(dec) + suf;
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+        var counters = document.querySelectorAll("[data-count]");
+        if (hasIO && !reduce) {
+          var co = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  countUp(en.target);
+                  co.unobserve(en.target);
+                }
+              });
+            },
+            { threshold: 0.6 }
+          );
+          counters.forEach(function (c) {
+            co.observe(c);
+          });
+        } else {
+          counters.forEach(countUp);
+        }
+
+        /* decision reveal (check wipe), with no-IO fallback revealing all */
+        var decisions = document.querySelectorAll(".decision");
+        if (hasIO && !reduce) {
+          var dio = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  en.target.classList.add("in");
+                  dio.unobserve(en.target);
+                }
+              });
+            },
+            { threshold: 0.3 }
+          );
+          decisions.forEach(function (d) {
+            dio.observe(d);
+          });
+        } else {
+          decisions.forEach(function (d) {
+            d.classList.add("in");
+          });
+        }
+
+        /* scrollytelling callouts */
+        var callouts = Array.prototype.slice.call(document.querySelectorAll(".callout"));
+        if (hasIO) {
+          var cio = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  callouts.forEach(function (c) {
+                    c.classList.remove("active");
+                  });
+                  en.target.classList.add("active");
+                }
+              });
+            },
+            { rootMargin: "-45% 0px -45% 0px" }
+          );
+          callouts.forEach(function (c) {
+            cio.observe(c);
+          });
+        }
+
+        /* decision deep-link copy */
+        document.querySelectorAll(".dhead .anchor").forEach(function (a) {
+          a.addEventListener("click", function (e) {
+            e.preventDefault();
+            var url = location.href.split("#")[0] + a.getAttribute("href");
+            var done = function () {
+              var t = a.textContent;
+              a.textContent = "Copied";
+              setTimeout(function () {
+                a.textContent = t;
+              }, 1200);
+            };
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText(url).then(done, done);
+            } else {
+              history.replaceState(null, "", a.getAttribute("href"));
+              done();
+            }
+          });
+        });
+
+        /* spine nav scrollspy: set AND clear aria-current (exactly one) */
+        var navlinks = Array.prototype.slice.call(document.querySelectorAll(".spinenav a"));
+        var sections = navlinks
+          .map(function (a) {
+            return document.querySelector(a.getAttribute("href"));
+          })
+          .filter(Boolean);
+        if (hasIO) {
+          var sio = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (en) {
+                if (en.isIntersecting) {
+                  var i = sections.indexOf(en.target);
+                  navlinks.forEach(function (l, j) {
+                    if (j === i) {
+                      l.classList.add("active");
+                      l.setAttribute("aria-current", "true");
+                    } else {
+                      l.classList.remove("active");
+                      l.removeAttribute("aria-current");
+                    }
+                  });
+                }
+              });
+            },
+            { rootMargin: "-20% 0px -60% 0px" }
+          );
+          sections.forEach(function (s) {
+            sio.observe(s);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
