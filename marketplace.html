@@ -298,9 +298,9 @@
             </div>
             <p class="tradeoff">
               <b>The trade-off:</b> we went against what execs wanted, so the case had to hold up.
-              My content-design partner built it with competitive analysis and usability evidence. I
-              built the UI system that carries “Activate” and the full state vocabulary across every
-              card.
+              My content-design partner led the language call: she showed execs that “Unlock” read
+              as a charge and failed in Spanish and with screen readers. I built the component
+              system that carries “Activate” and the full state vocabulary across every card.
             </p>
           </div>
 
@@ -315,7 +315,7 @@
               </p>
               <p>
                 So we cut further than felt comfortable: title, date, logo, state. The show art
-                became the hero, and that shipped.
+                became the hero.
               </p>
             </div>
           </div>
@@ -435,26 +435,33 @@
               <div class="dcol shipped">
                 <span class="dtag"><span class="mark" aria-hidden="true">✓</span>Shipped</span>
                 <div
-                  class="imgslot r-32-15"
+                  class="imgslot r-32-15 is-video"
                   role="img"
-                  data-asset="hero-gradient-shipped.png"
-                  aria-label="The shipped hero with a gradient overlay and text in the safe zone."
+                  data-asset="hero-gradient-loop.mp4"
+                  aria-label="Short loop: the hero carousel rotating while the overlay keeps the headline readable on every image."
                 >
                   <span class="mp-chrome" aria-hidden="true"></span>
+                  <!-- Drop the loop in here with zero layout shift:
+                  <video src="assets/hero-gradient-loop.mp4" poster="assets/hero-gradient-shipped.png"
+                         autoplay muted loop playsinline preload="metadata"
+                         aria-label="The hero carousel rotating while the overlay keeps the headline readable on every image."></video> -->
                 </div>
                 <div class="dnote">
                   <span class="dlabel">Why it won</span>
                   <p class="dpull"><span>Readable on any image.</span></p>
-                  <p class="dwhy">A gradient keeps text at 4.5:1 contrast on any image.</p>
+                  <p class="dwhy">
+                    A gradient keeps text at 4.5:1 contrast as the carousel rotates.
+                  </p>
                 </div>
                 <span class="wipe" aria-hidden="true"></span>
               </div>
             </div>
             <p class="tradeoff">
               <b>The result:</b> I designed the overlay and templated it in the CMS, so marketing
-              can swap images without design. My content-design partner set the safe-zone rules:
-              character limits, headline to CTA order, and targeting. The exec got the look,
-              marketing got autonomy, customers got readable text, and accessibility approved it.
+              can swap images without design. My content-design partner defined the safe-zone rules:
+              character limits, headline-to-CTA order, and per-segment targeting. The exec got the
+              look, marketing got autonomy, customers got readable text, and accessibility approved
+              it.
             </p>
           </div>
         </section>
@@ -463,8 +470,8 @@
           <p class="kicker">04 · Build &amp; validate</p>
           <h2 class="claim">A usability test found what the prototype got wrong.</h2>
           <p>
-            We tested a working prototype with 8 customers in Aug 2025, a week before the launch
-            target. It is a small sample, so we read it as directional. Its main job was to shape
+            We tested a working prototype with 8 customers in Aug 2025, a week before our launch
+            milestone. It is a small sample, so we read it as directional. Its main job was to shape
             the fast-follows that came with launch.
           </p>
           <ul class="facts">
@@ -528,6 +535,24 @@
               </div>
             </div>
           </div>
+
+          <figure class="videofig">
+            <div
+              class="imgslot r-16-9 is-video"
+              role="img"
+              data-asset="marketplace-flow.mp4"
+              aria-label="Screen recording: browsing the marketplace, then activating an app from a card."
+            >
+              <span class="mp-chrome" aria-hidden="true"></span>
+              <!-- Drop the recording in here with zero layout shift:
+              <video src="assets/marketplace-flow.mp4" poster="assets/marketplace-flow-poster.jpg"
+                     autoplay muted loop playsinline preload="metadata"
+                     aria-label="Browsing the marketplace, then activating an app from a card."></video> -->
+            </div>
+            <figcaption class="caption">
+              The shipped flow: browse a swimlane, open a card, Activate. 20 seconds, no audio.
+            </figcaption>
+          </figure>
         </section>
 
         <section id="s-outcomes" class="section">
@@ -551,7 +576,7 @@
                 <span class="lens">Scale</span>
                 <div class="onum" data-count="6" data-prefix="" data-suffix="+">6+</div>
                 <div class="olab">Providers added, 0 design interventions</div>
-                <div class="ometh">After launch, including Netflix.</div>
+                <div class="ometh">After launch, across external providers.</div>
               </div>
             </div>
             <p class="caption">Also: +10% streaming-app activation and +18% TV-plan upgrades.</p>
@@ -569,7 +594,10 @@
             <li>Bring research in on day one.</li>
             <li>Test on mobile earlier.</li>
             <li>Phase the launch: core swimlanes first, hero carousel and targeting after.</li>
-            <li>Test CTAs by segment, a lesson from my content-design partner.</li>
+            <li>
+              Test CTAs by segment, something my content-design partner and I would build in from
+              the start.
+            </li>
           </ul>
         </section>
 
