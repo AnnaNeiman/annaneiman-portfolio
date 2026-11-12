@@ -331,18 +331,6 @@ em.serif {
   font-weight: 500;
   border-left-color: var(--ink);
 }
-.jump {
-  margin: 12px 0 0 18px;
-}
-.jump a {
-  font: 400 12px var(--f-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-  display: inline-flex;
-  gap: 6px;
-  align-items: center;
-}
 .readtime {
   font: 400 12px var(--f-mono);
   color: var(--flint);
@@ -1097,8 +1085,8 @@ em.serif {
    Transform only applies on :hover (pointer), matching the existing .endcard
    pattern already covered by the global prefers-reduced-motion guard. */
 .mp .endcard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(30, 30, 26, 0.12);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card);
 }
 .mp .livelink:hover {
   border-color: var(--accent);
@@ -1180,39 +1168,71 @@ em.serif {
 
 /* end nav + footer */
 .endnav {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
   gap: 14px;
   margin: var(--gap-section) auto;
   max-width: var(--maxw);
   padding-inline: clamp(24px, 6vw, 120px);
 }
+/* CTA pills: same language as .btn-outline / .btn-solid on the home page.
+   Back = outline (secondary), next = solid ink (primary). The "← Back" / "Next →"
+   eyebrow is visually hidden but stays in the accessible name; arrows are drawn
+   by pseudo-elements around the h3. */
 .endcard {
-  background: var(--surface);
-  border-radius: var(--r-card);
-  box-shadow: var(--shadow-card);
-  padding: var(--card-pad);
-  color: inherit;
-  transition: transform 0.18s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 14px 28px;
+  border: 1px solid var(--ink);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--ink);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
 }
 .endcard:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  background: var(--surface);
 }
 .endcard.next {
-  text-align: right;
-} /* was inline style="text-align:right" */
+  background: var(--ink);
+  color: var(--surface);
+}
+.endcard.next:hover {
+  background: var(--ink);
+  box-shadow: var(--shadow-card);
+}
 .endcard .k {
-  font: 400 12px var(--f-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--flint);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 .endcard h3 {
-  margin-top: 6px;
+  margin: 0;
   font-family: var(--f-body);
-  font-weight: 700;
-  font-size: 1.2rem;
+  font-weight: 500;
+  font-size: 1rem;
   letter-spacing: var(--ls);
+}
+.endcard.next h3::after {
+  content: "→";
+  margin-left: 10px;
+}
+@media (max-width: 520px) {
+  .endcard {
+    flex: 1 1 100%;
+  }
 }
 footer.site {
   border-top: 1px solid var(--tag-divider);
@@ -1407,7 +1427,8 @@ footer.site a {
   aspect-ratio: 4 / 5;
   min-height: 0;
 }
-.imgslot > img {
+.imgslot > img,
+.imgslot > video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1416,10 +1437,36 @@ footer.site a {
   object-position: top center;
   border-radius: inherit;
 }
+.imgslot > video {
+  z-index: 2;
+  background: var(--ink);
+}
 @media (max-width: 880px) {
   .story .imgslot.r-4-5 {
     aspect-ratio: 4 / 3;
   }
+}
+
+/* ---- video slots: same frame as an image slot, but the empty placeholder reads as
+   a recording (play glyph + REC) so it's obvious this becomes motion, not a still.
+   A future <video> drops in at z-index:2 and covers the chrome, zero layout shift. ---- */
+.imgslot.is-video .mp-chrome::after {
+  content: "▶ REC";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 2px;
+  font: 700 0.72rem/1.4 var(--f-mono, "Space Mono", monospace);
+  letter-spacing: 0.14em;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+  z-index: 1;
+}
+.videofig {
+  margin: var(--s-5) 0 0;
+}
+.videofig .caption {
+  margin-top: var(--s-2);
 }
 
 /* ---- the 60-second version: dark editorial panel ---- */
